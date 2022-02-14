@@ -1,4 +1,1 @@
-open
-close
-right
-wrong
+repeat
