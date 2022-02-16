@@ -1,4 +1,4 @@
-Language model created by QuickLM on Sat Feb  5 12:28:57 EST 2022
+Language model created by QuickLM on Mon Feb 14 10:04:21 EST 2022
 Copyright (c) 1996-2010 Carnegie Mellon University and Alexander I. Rudnicky
 
 The model is in standard ARPA format, designed by Doug Paul while he was at MITRE.
@@ -15,27 +15,27 @@ ngram 2=8
 ngram 3=4
 
 \1-grams:
+-1.3802 1 -0.2218
+-1.3802 2 -0.2218
+-1.3802 3 -0.2218
+-1.3802 4 -0.2218
 -0.7782 </s> -0.3010
 -0.7782 <s> -0.2218
--1.3802 CLOSE -0.2218
--1.3802 OPEN -0.2218
--1.3802 RIGHT -0.2218
--1.3802 WRONG -0.2218
 
 \2-grams:
--0.9031 <s> CLOSE 0.0000
--0.9031 <s> OPEN 0.0000
--0.9031 <s> RIGHT 0.0000
--0.9031 <s> WRONG 0.0000
--0.3010 CLOSE </s> -0.3010
--0.3010 OPEN </s> -0.3010
--0.3010 RIGHT </s> -0.3010
--0.3010 WRONG </s> -0.3010
+-0.3010 1 </s> -0.3010
+-0.3010 2 </s> -0.3010
+-0.3010 3 </s> -0.3010
+-0.3010 4 </s> -0.3010
+-0.9031 <s> 1 0.0000
+-0.9031 <s> 2 0.0000
+-0.9031 <s> 3 0.0000
+-0.9031 <s> 4 0.0000
 
 \3-grams:
--0.3010 <s> CLOSE </s>
--0.3010 <s> OPEN </s>
--0.3010 <s> RIGHT </s>
--0.3010 <s> WRONG </s>
+-0.3010 <s> 1 </s>
+-0.3010 <s> 2 </s>
+-0.3010 <s> 3 </s>
+-0.3010 <s> 4 </s>
 
 \end\

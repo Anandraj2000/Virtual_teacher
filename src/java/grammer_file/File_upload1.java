@@ -42,6 +42,10 @@ public class File_upload1 extends javax.swing.JFrame {
     public boolean checkpoint2=false;
     public boolean checkpoint3=true;
     public String keyword = "";
+    public static String question_set_file_path = "";
+    public static String dictionary_file_path = "";
+    public static String language_file_path = "";
+    public static String read="";
     
     
     /**
@@ -52,10 +56,35 @@ public class File_upload1 extends javax.swing.JFrame {
         ta.setText("PLEASE WAIT FOR FILE UPLOADING IT TAKES TIMES");
         reading_mode.setEnabled(false);
                 test_mode.setEnabled(false);
-                separator.setEnabled(false);
-                remove_hindi.setEnabled(false);
+                
     }
     
+    //copy the uploaded file with static path file
+    public static void copy_file(String s_file,String d_file) throws IOException 
+    {
+        FileInputStream in = null;
+        FileOutputStream out = null; 
+        try {
+            in = new FileInputStream(s_file);
+            out = new FileOutputStream(d_file); 
+            int c;
+            while ((c = in.read()) != -1) 
+            {
+                out.write(c);
+            }
+        }finally {
+            if (in != null)
+            {
+                in.close();
+            }
+            if (out != null)
+            { 
+                out.close();
+            }
+        }
+    }
+    
+    //converted unstructured into structure
     public void separator()
     {
             
@@ -80,7 +109,7 @@ public class File_upload1 extends javax.swing.JFrame {
             else
             { 
                 checkpoint1=true;
-                remove_hindi.setEnabled(true);
+                
                 reading_mode.setEnabled(true);
                 test_mode.setEnabled(true);
                
@@ -351,6 +380,7 @@ public class File_upload1 extends javax.swing.JFrame {
                     for(int i=0;i<noq;i++)
                     {
                         question_set.put(key1[i],value1[i+1]);          //store the question with there correct question_no
+                        //System.out.println(key1[i]+" "+value1[i+1]);
                     }
                 }catch(Exception e)
                 {
@@ -402,12 +432,13 @@ public class File_upload1 extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         back = new javax.swing.JButton();
-        separator = new javax.swing.JButton();
         test_mode = new javax.swing.JButton();
         jScrollPane4 = new javax.swing.JScrollPane();
         hindi = new javax.swing.JTextArea();
-        remove_hindi = new javax.swing.JButton();
         logout = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jLabel8 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -422,6 +453,11 @@ public class File_upload1 extends javax.swing.JFrame {
         jLabel3.setText("FORMATE OF ANSWER");
 
         NOQ1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        NOQ1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                NOQ1ActionPerformed(evt);
+            }
+        });
 
         ansType.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         ansType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ANSWER AT END OF ALL QUESTION", "ANSWER AT END OF EVERY QUESTION ", "ANSWER IN BOLD FORMATE", " " }));
@@ -481,14 +517,6 @@ public class File_upload1 extends javax.swing.JFrame {
             }
         });
 
-        separator.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        separator.setText("SEPARATOR");
-        separator.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                separatorActionPerformed(evt);
-            }
-        });
-
         test_mode.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         test_mode.setText("TEST_MODE");
         test_mode.addActionListener(new java.awt.event.ActionListener() {
@@ -501,14 +529,6 @@ public class File_upload1 extends javax.swing.JFrame {
         hindi.setRows(5);
         jScrollPane4.setViewportView(hindi);
 
-        remove_hindi.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        remove_hindi.setText("HINDI PART");
-        remove_hindi.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                remove_hindiActionPerformed(evt);
-            }
-        });
-
         logout.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         logout.setText("LOG OUT");
         logout.addActionListener(new java.awt.event.ActionListener() {
@@ -516,6 +536,25 @@ public class File_upload1 extends javax.swing.JFrame {
                 logoutActionPerformed(evt);
             }
         });
+
+        jButton1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jButton1.setText("UPLOAD DICTIONARY FILE OR .dic");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jButton2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jButton2.setText("UPLOAD LANGUAGE FILE OR .lm");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        jLabel8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel8.setText("UPLOAD AFTER MANUAL WORK");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -530,32 +569,26 @@ public class File_upload1 extends javax.swing.JFrame {
                                 .addGap(120, 120, 120)
                                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(40, 40, 40)
-                                .addComponent(NOQ1, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 208, Short.MAX_VALUE)
+                                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addGap(32, 32, 32)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(NOQ1, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(file_chooser, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(ansType, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                    .addComponent(ansType, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 315, Short.MAX_VALUE)
+                                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jLabel7)
-                                .addGap(60, 60, 60)
-                                .addComponent(test_mode)
-                                .addGap(78, 78, 78))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(57, 57, 57)
-                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(50, 50, 50)))
-                        .addComponent(reading_mode)
-                        .addGap(41, 41, 41)
-                        .addComponent(separator, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(remove_hindi, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap()
+                        .addComponent(jLabel7)
+                        .addGap(60, 60, 60)
+                        .addComponent(test_mode)
+                        .addGap(78, 78, 78)
+                        .addComponent(reading_mode)))
+                .addGap(142, 142, 142)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(96, 96, 96)
@@ -593,26 +626,28 @@ public class File_upload1 extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(46, 46, 46)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(NOQ1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(21, 21, 21)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(10, 10, 10)
-                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(ansType, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(31, 31, 31)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(file_chooser, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButton1)
+                            .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton2)
+                        .addGap(29, 29, 29)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(reading_mode, javax.swing.GroupLayout.DEFAULT_SIZE, 41, Short.MAX_VALUE)
-                            .addComponent(separator, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(test_mode, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(remove_hindi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(test_mode, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(29, 29, 29)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -659,7 +694,7 @@ public class File_upload1 extends javax.swing.JFrame {
                 {
                     setVisible(false);
                     
-                    new Reading_Mode1().setVisible(true);
+                    new main1.speech_to_text().setVisible(true);
                 }
                 
             }
@@ -699,11 +734,7 @@ public class File_upload1 extends javax.swing.JFrame {
 
                 reading_mode.setEnabled(true);
                 test_mode.setEnabled(true);
-                separator.setEnabled(true);
-                
-                //remove_hindi.setEnabled(true);
-                //for selecting the file path
-               JFileChooser fc=new JFileChooser(); 
+                JFileChooser fc=new JFileChooser(); 
                 int i=fc.showOpenDialog(this); 
                 //String file_path = "";
                 //System.out.println("i= "+i);
@@ -711,7 +742,7 @@ public class File_upload1 extends javax.swing.JFrame {
                 { 
                     File f=fc.getSelectedFile(); 
                     
-                    file_path = f.getPath();     //get the file path
+                    question_set_file_path = f.getPath();     //get the file path
                 }
                 else if(i==JFileChooser.CANCEL_OPTION)
                 {
@@ -723,50 +754,29 @@ public class File_upload1 extends javax.swing.JFrame {
                     System.out.println("nothing");
                 }
                 
-                
-                //reader and write the file content
-                boolean val_key = Pattern.compile(".*"+".txt").matcher(file_path).matches();
+                boolean val_key = Pattern.compile(".*"+".txt").matcher(question_set_file_path).matches();
                 if(!val_key)
                 {
                     JOptionPane.showMessageDialog(null,"<html><h1><span style=\"color:red font:-size:10px\">ONLY TEXT FILE SUPPORTED<span></h1><html>","ALERT",JOptionPane.INFORMATION_MESSAGE);
 
                 }
                 else{
-                //FileReader in = null; 
-		//FileWriter out = null;
-		//try {
-		//in = new FileReader(file_path);        //read file content
-                //in = new FileReader("D:\\ANAND\\TYCS\\project\\steps.txt");
-                /*in = new FileReader("D:\\ANAND\\TYCS\\project\\data set\\Answer at end\\output.txt");        
-		//out = new FileWriter("D:\\ANAND\\TYCS\\project\\output.txt");
-		int c;
-                char ch;
-                String t;
-                ta.setText("");
-		while ((c = in.read()) != -1)   
-		{ 
-			ch = ((char)c);         
-                        ta.setText(ta.getText()+Character.toString(ch));    //write file content to ta
-		}*/
-                //ta.setText((String)ch));
                 
-                //File file = new File("D:\\\\ANAND\\\\TYCS\\\\project\\\\output.txt");
  
-            try (BufferedReader br = new BufferedReader(new FileReader(file_path)))
-            {
-                String line;
-                while ((line = br.readLine()) != null) {
-                    //System.out.println(line);
-                    ta.setText(ta.getText()+"\n"+line);
-                }
-		}catch(Exception e)
+                try (BufferedReader br = new BufferedReader(new FileReader(question_set_file_path)))
                 {
-                    reading_mode.setEnabled(false);
-                    test_mode.setEnabled(false);
-                    separator.setEnabled(false);
-                    System.out.println(e);
-                    JOptionPane.showMessageDialog(null,"<html><h1><span style=\"color:red font:-size:10px\">FILE HAVING SOME ISSUE<span></h1><html>","ALERT",JOptionPane.INFORMATION_MESSAGE);
-                }
+                    String line;
+                    while ((line = br.readLine()) != null) {
+                        //System.out.println(line);
+                        read = read+"       "+"\n"+"        "+line;
+                        ta.setText(ta.getText()+"\n"+line);
+                    }
+                }catch(Exception e)
+                    {
+                        //file_upload.setEnabled(false);
+                        System.out.println(e);
+                        JOptionPane.showMessageDialog(null,"<html><h1><span style=\"color:red font:-size:10px\">FILE HAVING SOME ISSUE<span></h1><html>","ALERT",JOptionPane.INFORMATION_MESSAGE);
+                    }
                 }
        
         // TODO add your handling code here:
@@ -789,47 +799,6 @@ public class File_upload1 extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_logoutActionPerformed
-
-    private void separatorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_separatorActionPerformed
-
-        if("".equals(NOQ1.getText()))
-        {
-            JOptionPane.showMessageDialog(null,"<html><h1><span style=\"color:red font:-size:10px\">PLEASE ENTER NUMBER OF QUESTION<span></h1><html>","ALERT",JOptionPane.INFORMATION_MESSAGE);
-        }
-        else
-        {
-            separator();
-        }
-
-        // TODO add your handling code here:
-    }//GEN-LAST:event_separatorActionPerformed
-
-    private void remove_hindiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_remove_hindiActionPerformed
-        // TODO add your handling code here:
-        //String[] subs1 = new String[2];
-        //String[] subs2 = new String[2];
-        //subs1[0] = "";
-        //subs2[0] = "";
-
-        //split the Hindi section
-        String[] subs1 = ques_area.getText().split("Hindi");
-        String[] subs2 = ans_area.getText().split("Hindi");
-        //System.out.println("Q"+subs1[1]==null);
-        //System.out.println("A"+subs2[1]==null);
-        if(subs1.length==2)
-        {
-            System.out.println("in ques");
-            ques_area.setText(subs1[0]);
-            hindi.setText(hindi.getText()+subs1[1]);
-        }
-        else if(subs2.length==2)
-        {
-            ans_area.setText(subs2[0]);
-            hindi.setText(hindi.getText()+subs2[1]);
-        }
-        //ques_area.setText(subs1[0]);
-        //hindi.setText(hindi.getText()+subs1[1]);
-    }//GEN-LAST:event_remove_hindiActionPerformed
 
     private void test_modeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_test_modeActionPerformed
         // TODO add your handling code here:
@@ -855,6 +824,80 @@ public class File_upload1 extends javax.swing.JFrame {
         }
         //directing to the Quiz_mode
     }//GEN-LAST:event_test_modeActionPerformed
+
+    private void NOQ1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NOQ1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_NOQ1ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        JFileChooser fc=new JFileChooser(); 
+                int i=fc.showOpenDialog(this); 
+                //String file_path = "";
+                //System.out.println("i= "+i);
+                if(i==JFileChooser.APPROVE_OPTION)
+                { 
+                    File f=fc.getSelectedFile(); 
+                    
+                    dictionary_file_path = f.getPath();     //get the file path
+                    try{  
+                        copy_file(dictionary_file_path,"src\\java\\grammer_file\\dict.dic");
+                    }catch(Exception e)
+                    {
+                        System.out.println(e);
+                    }
+                }
+                else if(i==JFileChooser.CANCEL_OPTION)
+                {
+                    //System.out.println("i= "+i);
+                    JOptionPane.showMessageDialog(this,"Cancel");
+                }
+                else
+                {
+                    System.out.println("nothing");
+                }
+                 boolean val_key = Pattern.compile(".*"+".dic").matcher(dictionary_file_path).matches();
+                if(!val_key)
+                {
+                    JOptionPane.showMessageDialog(null,"<html><h1><span style=\"color:red font:-size:10px\">ONLY DICTIONARY or .dic FILE SUPPORTED<span></h1><html>","ALERT",JOptionPane.INFORMATION_MESSAGE);
+
+                }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        JFileChooser fc=new JFileChooser(); 
+                int i=fc.showOpenDialog(this); 
+                //String file_path = "";
+                //System.out.println("i= "+i);
+                if(i==JFileChooser.APPROVE_OPTION)
+                { 
+                    File f=fc.getSelectedFile(); 
+                    
+                    language_file_path = f.getPath();     //get the file path
+                    try{  
+                        copy_file(language_file_path,"src\\java\\grammer_file\\lang.lm");
+                    }catch(Exception e)
+                    {
+                        System.out.println(e);
+                    }
+                }
+                else if(i==JFileChooser.CANCEL_OPTION)
+                {
+                    //System.out.println("i= "+i);
+                    JOptionPane.showMessageDialog(this,"Cancel");
+                }
+                else
+                {
+                    System.out.println("nothing");
+                }
+                  boolean val_key = Pattern.compile(".*"+".lm").matcher(language_file_path).matches();
+                if(!val_key)
+                {
+                    JOptionPane.showMessageDialog(null,"<html><h1><span style=\"color:red font:-size:10px\">ONLY LANGUAUE or .lm FILE SUPPORTED<span></h1><html>","ALERT",JOptionPane.INFORMATION_MESSAGE);
+
+                }
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -901,6 +944,8 @@ public class File_upload1 extends javax.swing.JFrame {
     private javax.swing.JButton back;
     private javax.swing.JButton file_chooser;
     private javax.swing.JTextArea hindi;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -908,6 +953,7 @@ public class File_upload1 extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
@@ -915,8 +961,6 @@ public class File_upload1 extends javax.swing.JFrame {
     private javax.swing.JButton logout;
     private javax.swing.JTextArea ques_area;
     private javax.swing.JButton reading_mode;
-    private javax.swing.JButton remove_hindi;
-    private javax.swing.JButton separator;
     private javax.swing.JTextArea ta;
     private javax.swing.JButton test_mode;
     // End of variables declaration//GEN-END:variables

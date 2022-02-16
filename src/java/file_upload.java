@@ -32,6 +32,8 @@ public class file_upload extends javax.swing.JFrame {
         initComponents();
     }
     
+    
+    
     public static void copy_file(String s_file,String d_file) throws IOException 
     {
         FileInputStream in = null;

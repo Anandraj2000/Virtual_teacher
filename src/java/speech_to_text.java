@@ -6,6 +6,7 @@ import edu.cmu.sphinx.api.LiveSpeechRecognizer;
 import edu.cmu.sphinx.api.SpeechResult;
 import static grammer_file.File_upload1.answer_set;
 import static grammer_file.File_upload1.key;
+import static grammer_file.File_upload1.noq;
 import static grammer_file.File_upload1.question_set;
 import static grammer_file.Reading_Mode1.reader_area;
 import java.io.IOException;
@@ -35,12 +36,16 @@ public class speech_to_text extends javax.swing.JFrame {
     public static String flag="1";
     public static Configuration config;
     public static LiveSpeechRecognizer rec;
-    public static String q1="what is your password?";
+    //public static String q1="what is your password?";
     public static Voice voice;
-    public static Dictionary question_set = new Hashtable();
-    public static Dictionary answer_set = new Hashtable();
-    public static String key[]={"q1","q2","q3"};
+    //public static Dictionary question_set = new Hashtable();
+    //public static Dictionary answer_set = new Hashtable();
+    //public static String key[]={"q1","q2","q3"};
     public static int count=0;
+    //public static int noq=3;
+    public static Dictionary user_answer = new Hashtable();
+    //public static Dictionary user_min = new Hashtable();
+    public static Dictionary user_sec = new Hashtable();
     
     
     
@@ -55,18 +60,18 @@ public class speech_to_text extends javax.swing.JFrame {
         VoiceManager vm = VoiceManager.getInstance();
         voice = vm.getVoice("kevin16");
         voice.allocate();
-        question_set.put("q1","what is the command?");
-        question_set.put("q2","java is object oriented langauge?");
-        question_set.put("q3","After work done from the server what last action must you perform?");
+        //question_set.put("q1","what is the command?");
+        //question_set.put("q2","java is object oriented langauge?");
+        //question_set.put("q3","After work done from the server what last action must you perform?");
         /*question_set.put("q1","When is 'World Ozone Day' observed?\n" +
 "1) January 15\n" +
 "2) April 25\n" +
 "3) December 16\n" +
 "4) September 16");*/
         
-        answer_set.put("q1","open");
-        answer_set.put("q2","right");
-        answer_set.put("q3","close");
+        //answer_set.put("q1","open");
+        //answer_set.put("q2","right");
+        //answer_set.put("q3","close");
         
         /*try{
             speech();
@@ -81,11 +86,11 @@ public class speech_to_text extends javax.swing.JFrame {
     {
         config = new Configuration();
         config.setAcousticModelPath("resource:/edu/cmu/sphinx/models/en-us/en-us");
-        //config.setDictionaryPath(file_upload.dictionary_file_path);
-        config.setDictionaryPath("src\\java\\grammer_file\\dict.dic");
+        config.setDictionaryPath(grammer_file.File_upload1.dictionary_file_path);
+        //config.setDictionaryPath("src\\java\\grammer_file\\dict.dic");
         //config.setDictionaryPath("D:\\test\\test1\\dict.dic");
-        //config.setLanguageModelPath(file_upload.language_file_path);
-        config.setLanguageModelPath("src\\java\\grammer_file\\lang.lm");
+        config.setLanguageModelPath(grammer_file.File_upload1.language_file_path);
+        //config.setLanguageModelPath("src\\java\\grammer_file\\lang.lm");
         //config.setLanguageModelPath("D:\\test\\test1\\lang.lm");
         System.out.println("hii");
         
@@ -122,7 +127,9 @@ public class speech_to_text extends javax.swing.JFrame {
                     //System.out.println("you speech="+result);
               
                     //text1.setText(text1.getText()+result);
-                    text1.setText(result);
+                    user_answer.put(key[count],result);
+                    user_sec.put(key[count],(end-System.currentTimeMillis()));
+                    //text1.setText(result);
                     voice.speak("YOUR ANSWER:  "+result);
                     //rec.startRecognition(false);
                     break;
@@ -146,7 +153,7 @@ public class speech_to_text extends javax.swing.JFrame {
 
         stop = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        text1 = new javax.swing.JTextArea();
+        display = new javax.swing.JTextArea();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
 
@@ -159,9 +166,9 @@ public class speech_to_text extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        text1.setColumns(20);
-        text1.setRows(5);
-        jScrollPane1.setViewportView(text1);
+        display.setColumns(20);
+        display.setRows(5);
+        jScrollPane1.setViewportView(display);
 
         jButton1.setText("START");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -250,6 +257,12 @@ public class speech_to_text extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         //voice.speak(file_upload.read);
+        for(int i=0;i<noq;i++)
+        {
+            user_answer.put(key[i],"");
+            //user_min.put(key[i],0);
+            user_sec.put(key[i],0);
+        }
         count=0;
         /**
         for (Enumeration k = answer_set.keys(); k.hasMoreElements();)
@@ -270,6 +283,8 @@ public class speech_to_text extends javax.swing.JFrame {
             speech_button();
             count++;
         }
+        setVisible(false);
+        new Performance_evaluation1().setVisible(true);
         //voice.speak((String)question_set.get("q1"));
         //speech_button();
         
@@ -311,10 +326,10 @@ public class speech_to_text extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private static javax.swing.JTextArea display;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton stop;
-    private static javax.swing.JTextArea text1;
     // End of variables declaration//GEN-END:variables
 }
