@@ -5,11 +5,19 @@
  */
 package main1;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.Statement;
+import javax.swing.JOptionPane;
+import static main1.update_question.checkpoint1;
+
 /**
  *
  * @author Admin
  */
 public class admin_home extends javax.swing.JFrame {
+    public static String t_code="room1";
 
     /**
      * Creates new form admin_home
@@ -33,9 +41,13 @@ public class admin_home extends javax.swing.JFrame {
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        enter_qn = new javax.swing.JTextField();
+        set_qn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(1363, 716));
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jButton1.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jButton1.setLabel("ADD QUESTION");
@@ -44,6 +56,7 @@ public class admin_home extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(68, 233, 225, 102));
 
         jButton2.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jButton2.setLabel("UPDATE QUESTION");
@@ -52,6 +65,7 @@ public class admin_home extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(336, 233, 229, 102));
 
         jButton3.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jButton3.setText("DELETE QUESTION");
@@ -60,55 +74,39 @@ public class admin_home extends javax.swing.JFrame {
                 jButton3ActionPerformed(evt);
             }
         });
+        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(606, 233, 271, 102));
 
         jButton4.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jButton4.setLabel("STUDENT RESPONSE");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(904, 233, 239, 102));
 
         jButton5.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jButton5.setLabel("NEW QUESTION SET");
+        getContentPane().add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(336, 404, 529, 65));
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("ADMIN HOME PAGE");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(348, 46, 505, 43));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(68, 68, 68)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(43, 43, 43)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(41, 41, 41)
-                                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(27, 27, 27)
-                                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 529, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(348, 348, 348)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 505, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(185, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(46, 46, 46)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(144, 144, 144)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 102, Short.MAX_VALUE))
-                .addGap(69, 69, 69)
-                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(225, Short.MAX_VALUE))
-        );
+        jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jLabel2.setText("ENTER THE NUMBER QUESTION IN VIVA");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 140, 390, 40));
+        getContentPane().add(enter_qn, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 140, 200, 40));
+
+        set_qn.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        set_qn.setText("SET");
+        set_qn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                set_qnActionPerformed(evt);
+            }
+        });
+        getContentPane().add(set_qn, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 140, 170, 40));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -129,6 +127,37 @@ public class admin_home extends javax.swing.JFrame {
         // TODO add your handling code here:
         new main1.delete_question().setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void set_qnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_set_qnActionPerformed
+        // TODO add your handling code here:
+        if(enter_qn.getText().isEmpty())
+        {
+            JOptionPane.showMessageDialog(null,"<html><h1><span style=\"color:red font:-size:10px\">PLEASE ENTER THE NO OF QUESTIONS TO BE ASKED<span></h1><html>","ALERT",JOptionPane.ERROR_MESSAGE);
+        }
+        else
+        {
+         try{
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/project2","root","");
+            Statement st = conn.createStatement();
+            PreparedStatement ps=conn.prepareStatement("update admin_records set NOQ=? where teacher_code=?");
+            
+            ps.setString(1,enter_qn.getText());
+            ps.setString(2,t_code);
+            ps.executeUpdate();
+            //checkpoint1=0;
+            JOptionPane.showMessageDialog(null,"<html><h1><span style=\"font:-size:10px\"><B>QUESTION NO IS UPDATED SUCCESSFULLY<br></B><span></h1><html>","ALERT",JOptionPane.INFORMATION_MESSAGE);
+            //setVisible(false);
+            //new admin_home().setVisible(true);
+            }catch(Exception e){
+                System.out.print(e);
+            }
+        }
+    }//GEN-LAST:event_set_qnActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -166,11 +195,14 @@ public class admin_home extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField enter_qn;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JButton set_qn;
     // End of variables declaration//GEN-END:variables
 }

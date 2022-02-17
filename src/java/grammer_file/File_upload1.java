@@ -460,7 +460,7 @@ public class File_upload1 extends javax.swing.JFrame {
         });
 
         ansType.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        ansType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ANSWER AT END OF ALL QUESTION", "ANSWER AT END OF EVERY QUESTION ", "ANSWER IN BOLD FORMATE", " " }));
+        ansType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ANSWER AT END OF ALL QUESTION(MCQ's)", " ", " " }));
         ansType.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ansTypeActionPerformed(evt);
@@ -578,9 +578,9 @@ public class File_upload1 extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(NOQ1, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(file_chooser, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(ansType, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 315, Short.MAX_VALUE)
-                                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(ansType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jLabel7)
