@@ -8,8 +8,10 @@ package main1;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 import static main1.update_question.checkpoint1;
 
 /**
@@ -44,6 +46,8 @@ public class admin_home extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         enter_qn = new javax.swing.JTextField();
         set_qn = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        record = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(1363, 716));
@@ -56,7 +60,7 @@ public class admin_home extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(68, 233, 225, 102));
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 180, 225, 102));
 
         jButton2.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jButton2.setLabel("UPDATE QUESTION");
@@ -65,7 +69,7 @@ public class admin_home extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(336, 233, 229, 102));
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 180, 229, 102));
 
         jButton3.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jButton3.setText("DELETE QUESTION");
@@ -74,7 +78,7 @@ public class admin_home extends javax.swing.JFrame {
                 jButton3ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(606, 233, 271, 102));
+        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 180, 271, 102));
 
         jButton4.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jButton4.setLabel("STUDENT RESPONSE");
@@ -83,21 +87,26 @@ public class admin_home extends javax.swing.JFrame {
                 jButton4ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(904, 233, 239, 102));
+        getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 180, 239, 102));
 
         jButton5.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jButton5.setLabel("NEW QUESTION SET");
-        getContentPane().add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(336, 404, 529, 65));
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 290, 529, 65));
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("ADMIN HOME PAGE");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(348, 46, 505, 43));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 40, 505, 43));
 
         jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel2.setText("ENTER THE NUMBER QUESTION IN VIVA");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 140, 390, 40));
-        getContentPane().add(enter_qn, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 140, 200, 40));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 130, 390, 40));
+        getContentPane().add(enter_qn, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 130, 200, 40));
 
         set_qn.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         set_qn.setText("SET");
@@ -106,7 +115,22 @@ public class admin_home extends javax.swing.JFrame {
                 set_qnActionPerformed(evt);
             }
         });
-        getContentPane().add(set_qn, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 140, 170, 40));
+        getContentPane().add(set_qn, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 130, 170, 40));
+
+        record.setBackground(new java.awt.Color(204, 204, 204));
+        record.setFont(new java.awt.Font("Times New Roman", 0, 11)); // NOI18N
+        record.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "NAME", "GENDER", "EMAIL", "SEAT NO", "CLASS"
+            }
+        ));
+        record.setGridColor(new java.awt.Color(0, 0, 0));
+        jScrollPane1.setViewportView(record);
+
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(72, 380, 1120, 200));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -157,7 +181,27 @@ public class admin_home extends javax.swing.JFrame {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
+        try{
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/project2","root","");
+            Statement st = conn.createStatement();
+            ResultSet rs=st.executeQuery("select * from "+t_code);
+            while(rs.next())
+            {
+                System.out.println("2");
+                String arr[] = {rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6)};
+                DefaultTableModel tb = (DefaultTableModel)record.getModel();
+                tb.addRow(arr);
+            }
+        }catch(Exception e)
+        {
+                System.out.print(e);
+        }
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton5ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -203,6 +247,8 @@ public class admin_home extends javax.swing.JFrame {
     private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable record;
     private javax.swing.JButton set_qn;
     // End of variables declaration//GEN-END:variables
 }

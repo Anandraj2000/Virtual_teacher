@@ -50,7 +50,6 @@
                                   <Component id="jLabel2" max="32767" attributes="0"/>
                                   <Component id="jLabel3" max="32767" attributes="0"/>
                                   <Component id="jLabel4" max="32767" attributes="0"/>
-                                  <Component id="jLabel5" alignment="0" min="-2" pref="159" max="-2" attributes="0"/>
                                   <Component id="jLabel6" max="32767" attributes="0"/>
                               </Group>
                               <EmptySpace pref="10" max="32767" attributes="0"/>
@@ -58,7 +57,6 @@
                                   <Component id="total1" max="32767" attributes="0"/>
                                   <Component id="correct_answer" max="32767" attributes="0"/>
                                   <Component id="wrong_answer" pref="155" max="32767" attributes="0"/>
-                                  <Component id="time_taken" max="32767" attributes="0"/>
                                   <Component id="average_time" max="32767" attributes="0"/>
                               </Group>
                           </Group>
@@ -109,15 +107,10 @@
                                   <Component id="jLabel4" max="32767" attributes="0"/>
                                   <Component id="wrong_answer" pref="30" max="32767" attributes="0"/>
                               </Group>
-                              <EmptySpace max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jLabel5" min="-2" pref="43" max="-2" attributes="0"/>
-                                  <Component id="time_taken" min="-2" pref="31" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="jLabel6" pref="33" max="32767" attributes="0"/>
-                                  <Component id="average_time" max="32767" attributes="0"/>
+                                  <Component id="jLabel6" min="-2" pref="33" max="-2" attributes="0"/>
+                                  <Component id="average_time" min="-2" pref="33" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
@@ -198,24 +191,6 @@
       </AuxValues>
     </Component>
     <Component class="javax.swing.JTextField" name="wrong_answer">
-      <AuxValues>
-        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="10"/>
-      </AuxValues>
-    </Component>
-    <Component class="javax.swing.JLabel" name="jLabel5">
-      <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Tahoma" size="14" style="1"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="TOTAL TIME TAKEN:"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="time_taken">
-      <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Tahoma" size="14" style="1"/>
-        </Property>
-      </Properties>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="10"/>
       </AuxValues>

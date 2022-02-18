@@ -35,6 +35,13 @@ public class student_details extends javax.swing.JFrame {
     public static int count=0;
     public static String[] key;
     public static String[] range;
+    public static String t_code;
+    public static String name1="";
+    public static String gender1="";
+    public static String email1="";
+    public static String s_class1="";
+    public static String seat_no1="";
+    
 
     /**
      * Creates new form student_details
@@ -174,6 +181,7 @@ public class student_details extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -183,7 +191,6 @@ public class student_details extends javax.swing.JFrame {
         f_name = new javax.swing.JTextField();
         m_name = new javax.swing.JTextField();
         l_name = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         seat_no = new javax.swing.JTextField();
@@ -196,6 +203,8 @@ public class student_details extends javax.swing.JFrame {
         send_otp = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
         u_teacher_code = new javax.swing.JTextField();
+        male = new javax.swing.JRadioButton();
+        female = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(1363, 716));
@@ -269,6 +278,19 @@ public class student_details extends javax.swing.JFrame {
             }
         });
 
+        buttonGroup1.add(male);
+        male.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        male.setText("MALE");
+
+        buttonGroup1.add(female);
+        female.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        female.setText("FEMALE");
+        female.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                femaleActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -305,7 +327,6 @@ public class student_details extends javax.swing.JFrame {
                                             .addComponent(f_name)
                                             .addComponent(m_name)
                                             .addComponent(l_name)
-                                            .addComponent(jTextField4)
                                             .addComponent(seat_no)
                                             .addComponent(email, javax.swing.GroupLayout.PREFERRED_SIZE, 293, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addGap(18, 18, 18)
@@ -313,7 +334,11 @@ public class student_details extends javax.swing.JFrame {
                                     .addGroup(layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(u_teacher_code, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(s_class, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(s_class, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(male, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                .addComponent(female, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                         .addGap(0, 0, Short.MAX_VALUE)))))
                         .addGap(233, 233, 233))
                     .addGroup(layout.createSequentialGroup()
@@ -342,9 +367,11 @@ public class student_details extends javax.swing.JFrame {
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(l_name, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jTextField4)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(male)
+                        .addComponent(female)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -401,11 +428,11 @@ public class student_details extends javax.swing.JFrame {
     private void save_detailsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_save_detailsActionPerformed
         // TODO add your handling code here:
         int f=0;
-        if(f_name.getText().isEmpty())
+        /*if(f_name.getText().isEmpty())
         {
            JOptionPane.showMessageDialog(null,"<html><h1><span style=\"color:red font:-size:10px\">PLEASE ENTER THE FIRST NAME<span></h1><html>","ALERT",JOptionPane.ERROR_MESSAGE); 
         }
-        /*else if(l_name.getText().isEmpty())
+        else if(l_name.getText().isEmpty())
         {
             JOptionPane.showMessageDialog(null,"<html><h1><span style=\"color:red font:-size:10px\">PLEASE ENTER THE LAST NAME<span></h1><html>","ALERT",JOptionPane.ERROR_MESSAGE);
         }
@@ -421,10 +448,18 @@ public class student_details extends javax.swing.JFrame {
         {
             JOptionPane.showMessageDialog(null,"<html><h1><span style=\"color:red font:-size:10px\">PLEASE ENTER THE CLASS Ii.e BSC-CS<span></h1><html>","ALERT",JOptionPane.ERROR_MESSAGE);
         }
-        else if(u_teacher_code.getText().isEmpty())
+        else if(!male.isSelected() && !female.isSelected())
+        {
+            JOptionPane.showMessageDialog(null,"<html><h1><span style=\"color:red font:-size:10px\">PLEASE SELECT GENDER<span></h1><html>","ALERT",JOptionPane.ERROR_MESSAGE);
+        }
+        else */if(u_teacher_code.getText().isEmpty())
         {
             JOptionPane.showMessageDialog(null,"<html><h1><span style=\"color:red font:-size:10px\">PLEASE ENTER THE TEACHER CODE PROVIDED BY TOUR TEACHER<span></h1><html>","ALERT",JOptionPane.ERROR_MESSAGE);
-        }*/
+        }
+        else if(email.getText().isEmpty())
+        {
+            JOptionPane.showMessageDialog(null,"<html><h1><span style=\"color:red font:-size:10px\">PLEASE ENTER THE EMAIL Ii.e BSC-CS<span></h1><html>","ALERT",JOptionPane.ERROR_MESSAGE);
+        }
         else{
             System.out.println("DONE1");
             try{
@@ -433,8 +468,7 @@ public class student_details extends javax.swing.JFrame {
                 Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/project2","root","");
                 Statement st = conn.createStatement();
                 ResultSet rs=st.executeQuery("select * from admin_records where teacher_code='"+u_teacher_code.getText()+"'");
-                Statement st1 = conn.createStatement();
-                ResultSet rs1=st1.executeQuery("select * from student_records where email='"+email.getText()+"'");
+                
                 int j=0;
                 while(rs.next())
                 {
@@ -453,6 +487,8 @@ public class student_details extends javax.swing.JFrame {
                 }
                 else
                 {
+                    Statement st1 = conn.createStatement();
+                    ResultSet rs1=st1.executeQuery("select * from "+u_teacher_code.getText()+" where email='"+email.getText()+"'");
                     int k=0;
                     while(rs1.next())
                     {
@@ -517,10 +553,26 @@ public class student_details extends javax.swing.JFrame {
                                 //display.setText(display.getText()+"\n"+"Answer"+": "+answer_set.get(key[count]));
                                 //voice.speak("question:    "+(String)question_set.get(key[count]));
                                 System.out.println("question:    "+((String)question_set.get(key[count1])));
+                                System.out.println("question:    "+((String)answer_set.get(key[count1])));
                                 //System.out.println(((String)question_set.get(key[count])).replaceAll("\\n","\n"+"                    "));
                                 //speech_button();
                                 count1++;
                             }
+                            
+                            
+                            
+                            name1=f_name.getText()+" "+m_name.getText()+" "+l_name.getText();
+                            if(male.isSelected())
+                                gender1="male";
+                            else
+                                gender1="female";
+                            //ps.setString(2,pass1);
+                            email1=email.getText();
+                            seat_no1=seat_no.getText();
+                            s_class1=s_class.getText();
+                            
+                            
+                            t_code=u_teacher_code.getText();
                             setVisible(false);
                             new speech_to_text().setVisible(true);
                         }
@@ -561,6 +613,10 @@ public class student_details extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_u_teacher_codeActionPerformed
 
+    private void femaleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_femaleActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_femaleActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -597,8 +653,10 @@ public class student_details extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JTextField email;
     private javax.swing.JTextField f_name;
+    private javax.swing.JRadioButton female;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
@@ -609,9 +667,9 @@ public class student_details extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField l_name;
     private javax.swing.JTextField m_name;
+    private javax.swing.JRadioButton male;
     private javax.swing.JTextField s_class;
     private javax.swing.JButton save_details;
     private javax.swing.JTextField seat_no;

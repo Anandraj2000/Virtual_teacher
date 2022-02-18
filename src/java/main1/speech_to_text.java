@@ -49,6 +49,8 @@ public class speech_to_text extends javax.swing.JFrame {
     public static Dictionary user_answer = new Hashtable();
     //public static Dictionary user_min = new Hashtable();
     public static Dictionary user_sec = new Hashtable();
+    public static String identify = "student";
+    public static int score=0;
     //public static Dictionary question_set = new Hashtable();
     //public static Dictionary answer_set = new Hashtable();
     
@@ -121,19 +123,20 @@ public class speech_to_text extends javax.swing.JFrame {
             
             SpeechResult speechResult =null;
             long t= System.currentTimeMillis();
-            long end = t+5000;
+            long end = t+3000;
    
-            while((speechResult=rec.getResult())!=null && (System.currentTimeMillis() < end))
+            while((System.currentTimeMillis() < end) && (speechResult=rec.getResult())!=null)
             //for(int i=0;i<100;i++)
             {
                 String result =speechResult.getHypothesis();
                 //if(result.equalsIgnoreCase("open"))
-                
+                System.out.println("ANswer222="+answer_set.get(key[count1]));
                 if(result.equalsIgnoreCase((String)answer_set.get(key[count1])))
                 {
                     //System.out.println("you speech="+result);
               
                     //text1.setText(text1.getText()+result);
+                    score++;
                     user_answer.put(key[count1],result);
                     user_sec.put(key[count1],(end-System.currentTimeMillis()));
                     //text1.setText(result);

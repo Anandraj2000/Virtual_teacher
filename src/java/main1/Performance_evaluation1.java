@@ -10,11 +10,26 @@ package main1;
 
 
 import grammer_file.*;
-import static grammer_file.File_upload1.answer_set;
-import static grammer_file.File_upload1.noq;
-import static grammer_file.File_upload1.question_set;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
+
+import java.util.Dictionary;
+import static main1.student_details.*;
+import static main1.student_details.answer_set;
+import static main1.student_details.count;
+import static main1.student_details.question_set;
+import static main1.student_details.t_code;
+import static main1.speech_to_text.score;
 import java.util.Enumeration;
+import java.util.Hashtable;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import static main1.speech_to_text.identify;
+import static main1.student_details.key;
 //import speech_to_text.answer_set;
 
 
@@ -28,6 +43,9 @@ import javax.swing.JOptionPane;
 public class Performance_evaluation1 extends javax.swing.JFrame {
     public static String result_content = "";
     public static int score1 = 0;
+    public static Dictionary answer_set1 = new Hashtable();
+    public static Dictionary question_set1 = new Hashtable();
+    public static int noq=count;
     
 
     /**
@@ -35,15 +53,46 @@ public class Performance_evaluation1 extends javax.swing.JFrame {
      */
     public static void getResult()
     {
-        int c = 0;
+        /*int c = 0;
         for (Enumeration k = answer_set.keys(); k.hasMoreElements();)
         {
             String temp_key1 = (String)k.nextElement();
-            result_content = "\n"+result_content +"\n"+(c+1)+": "+ question_set.get(temp_key1)+"\nCORRECT ANSWER: "+answer_set.get(temp_key1)+"\nYOUR ANSWER: "+speech_to_text.user_answer.get(temp_key1)+"\nTIME= "+speech_to_text.user_sec.get(temp_key1)+" sec"+"\n";
+            result_content = "\n"+result_content +"\n"+(c+1)+": "+ question_set.get(temp_key1)+"\nCORRECT ANSWER: "+answer_set1.get(temp_key1)+"\nYOUR ANSWER: "+speech_to_text.user_answer.get(temp_key1)+"\nTIME= "+speech_to_text.user_sec.get(temp_key1)+" sec"+"\n";
             c = c + 1;
+        }*/
+        int count1=0;
+        while(count1<key.length)
+        {
+            System.out.println(count1 +"l="+(key.length));
+            //display.setText("\n"+key[count]+": "+question_set.get(key[count]));
+            //display.setText(display.getText()+"\n"+"Answer"+": "+answer_set.get(key[count]));
+            result_content = "\n"+result_content +"\n"+(count1+1)+": "+ question_set.get(key[count1])+"\nCORRECT ANSWER: "+answer_set.get(key[count1])+"\nYOUR ANSWER: "+speech_to_text.user_answer.get(key[count1])+"\nTIME= "+speech_to_text.user_sec.get(key[count1])+" sec"+"\n";
+            
+            count1++;
         }
+        
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/project2","root","");
+            PreparedStatement ps=conn.prepareStatement("insert into "+t_code+" (name,gender,email,seat_no,class,total_question,score)values(?,?,?,?,?,?,?)");
+            
+            ps.setString(1,name1);
+            ps.setString(2,gender1);
+            ps.setString(3,email1);
+            ps.setString(4,seat_no1);
+            ps.setString(5,s_class1);
+            ps.setString(6,""+noq);
+            ps.setString(7,""+score);
+            ps.executeUpdate();
+        } catch (Exception ex) {
+            Logger.getLogger(Performance_evaluation1.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+       
+        
         analysis.setText(result_content);
         total1.setText(noq+"");
+        correct_answer.setText(""+score);
         //correct_answer.setText(""+score);
         //wrong_answer.setText(""+(File_upload.noq-score));
         //average_time.setText(""+average+"\tsec");
@@ -52,6 +101,7 @@ public class Performance_evaluation1 extends javax.swing.JFrame {
     public Performance_evaluation1() {
         initComponents();
         getResult();
+        
         
     }
 
@@ -73,8 +123,6 @@ public class Performance_evaluation1 extends javax.swing.JFrame {
         total1 = new javax.swing.JTextField();
         correct_answer = new javax.swing.JTextField();
         wrong_answer = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
-        time_taken = new javax.swing.JLabel();
         back_to_home_page = new javax.swing.JButton();
         exit = new javax.swing.JButton();
         save = new javax.swing.JButton();
@@ -101,11 +149,6 @@ public class Performance_evaluation1 extends javax.swing.JFrame {
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel4.setText("WRONG ANSWERED:");
-
-        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel5.setText("TOTAL TIME TAKEN:");
-
-        time_taken.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
 
         back_to_home_page.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         back_to_home_page.setText("HOME PAGE");
@@ -177,14 +220,12 @@ public class Performance_evaluation1 extends javax.swing.JFrame {
                                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(total1)
                                     .addComponent(correct_answer)
                                     .addComponent(wrong_answer, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE)
-                                    .addComponent(time_taken, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(average_time, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(LOGOUT, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -221,14 +262,10 @@ public class Performance_evaluation1 extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(wrong_answer, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(time_taken, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 33, Short.MAX_VALUE)
-                                    .addComponent(average_time, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(average_time, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(51, 51, 51)
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 444, javax.swing.GroupLayout.PREFERRED_SIZE))))
@@ -352,11 +389,9 @@ public class Performance_evaluation1 extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton save;
-    private static javax.swing.JLabel time_taken;
     private static javax.swing.JTextField total1;
     private static javax.swing.JTextField wrong_answer;
     // End of variables declaration//GEN-END:variables

@@ -7,10 +7,10 @@ import com.sun.speech.freetts.VoiceManager;
 import edu.cmu.sphinx.api.Configuration;
 import edu.cmu.sphinx.api.LiveSpeechRecognizer;
 import edu.cmu.sphinx.api.SpeechResult;
-import static grammer_file.File_upload1.answer_set;
-import static grammer_file.File_upload1.key;
-import static grammer_file.File_upload1.question_set;
-import static grammer_file.Reading_Mode1.reader_area;
+import static listener_file.File_upload3.answer_set;
+import static listener_file.File_upload3.key;
+import static listener_file.File_upload3.question_set;
+//import static grammer_file.Reading_Mode1.reader_area;
 import java.io.IOException;
 import static java.lang.Thread.sleep;
 import java.util.Dictionary;
@@ -42,11 +42,11 @@ public class speech_to_text3 extends javax.swing.JFrame {
     public static LiveSpeechRecognizer rec;
     public static String q1="what is your password?";
     public static Voice voice;
-    public static Dictionary question_set = new Hashtable();
-    public static Dictionary answer_set = new Hashtable();
+    //public static Dictionary question_set = new Hashtable();
+    //public static Dictionary answer_set = new Hashtable();
     public static String temp_key;
     public static int count=0; 
-    public static String key[]={"q1","q2"};
+    //public static String key[]={"q1","q2"};
     
     
     
@@ -61,16 +61,16 @@ public class speech_to_text3 extends javax.swing.JFrame {
         VoiceManager vm = VoiceManager.getInstance();
         voice = vm.getVoice("kevin16");
         voice.allocate();
-        question_set.put("q1","what is the command?");
-        question_set.put("q2","java is object oriented langauge?");
+        //question_set.put("q1","what is the command?");
+        //question_set.put("q2","java is object oriented langauge?");
         /*question_set.put("q1","When is 'World Ozone Day' observed?\n" +
 "1) January 15\n" +
 "2) April 25\n" +
 "3) December 16\n" +
 "4) September 16");*/
         
-        answer_set.put("q1","open");
-        answer_set.put("q2","right");
+        //answer_set.put("q1","open");
+        //answer_set.put("q2","right");
         
        
         
@@ -174,14 +174,14 @@ public class speech_to_text3 extends javax.swing.JFrame {
             
             SpeechResult speechResult =null;
             long t= System.currentTimeMillis();
-            long end = t+3000;
+            long end = t+5000;
    
             while((speechResult=rec.getResult())!=null && (System.currentTimeMillis() < end))
             //for(int i=0;i<100;i++)
             {
                 String result =speechResult.getHypothesis();
                 //if(result.equalsIgnoreCase("open"))
-                
+                //System.out.println("you speech=");
                 if(result.equalsIgnoreCase("repeat"))
                 {
                     //System.out.println("you speech="+result);
@@ -192,7 +192,7 @@ public class speech_to_text3 extends javax.swing.JFrame {
                     voice.speak("YOUR sayed:  "+result);
                     content();
                     t=System.currentTimeMillis();
-                    end = t+2000;
+                    end = t+5000;
                     
                     //rec.startRecognition(false);
                     //break;

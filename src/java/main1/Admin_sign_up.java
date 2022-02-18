@@ -150,6 +150,11 @@ public class Admin_sign_up extends javax.swing.JFrame {
             f=1;
             JOptionPane.showMessageDialog(null,"<html><h1><span style=\"color:red font:-size:10px\">PLEASE ENTER THE USERNAME<span></h1><html>","ALERT",JOptionPane.ERROR_MESSAGE);
         }
+        else if(pass1.isEmpty())
+        {
+            f=1;
+            JOptionPane.showMessageDialog(null,"<html><h1><span style=\"color:red font:-size:10px\">PLEASE ENTER THE PASSWORD<span></h1><html>","ALERT",JOptionPane.ERROR_MESSAGE);
+        }
         else
         {
             
@@ -177,6 +182,13 @@ public class Admin_sign_up extends javax.swing.JFrame {
                 }
                 if(f==0)
                 {
+                    Statement st1 = conn.createStatement();
+                    st1.execute("create table "+teacher_code.getText()+" (id int PRIMARY KEY AUTO_INCREMENT,name varchar(40),gender varchar(10),email varchar(50) UNIQUE,seat_no varchar(30),class varchar(50),total_question varchar(10),score varchar(10))");
+                    System.out.println("done");
+                    //PreparedStatement ps1=conn.prepareStatement("create table ? (id int PRIMARY KEY AUTO_INCREMENT,name varchar(40),gender varchar(10),email varchar(50) UNIQUE,seat_no varchar(30),class varchar(50))");
+                    //ps.setString(1,teacher_code.getText()); 
+                    //ps.executeUpdate();
+                    //System.out.println("done3");
                     PreparedStatement ps=conn.prepareStatement("insert into admin_records (u_name,password1,email,teacher_code)values(?,?,?,?)");
                     ps.setString(1,name1);
                     ps.setString(2,pass1);
@@ -184,6 +196,7 @@ public class Admin_sign_up extends javax.swing.JFrame {
                     ps.setString(4,teacher_code.getText());
                     ps.executeUpdate();
                     int i = JOptionPane.showConfirmDialog(null,"<html><h1><span style=\"font:-size:10px\"><B>Account created Successful<br>USERNAME:</B>"+name1+"<br><B>PASSWORD:</B>"+pass1+"<B>TEACHER CODE:</B>"+teacher_code.getText()+"<span></h1><html>","AUTHETICATION",JOptionPane.OK_OPTION);
+                    
                     if(i==0)
                     {
                         setVisible(false);

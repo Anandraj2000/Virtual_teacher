@@ -694,7 +694,7 @@ public class File_upload1 extends javax.swing.JFrame {
                 {
                     setVisible(false);
                     
-                    new main1.speech_to_text().setVisible(true);
+                    new speech_to_text2().setVisible(true);
                 }
                 
             }
