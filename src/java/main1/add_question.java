@@ -10,13 +10,14 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
+import static main1.Login_form_teacher.t_code;
 
 /**
  *
  * @author Admin
  */
 public class add_question extends javax.swing.JFrame {
-    public static String t_code="room1";
+    //public static String t_code="room1";
 
     /**
      * Creates new form add_question
@@ -170,7 +171,8 @@ public class add_question extends javax.swing.JFrame {
             ps.setString(3,answer.getText());
             ps.setString(4,t_code);
             ps.executeUpdate();
-            JOptionPane.showMessageDialog(null,"<html><h1><span style=\"font:-size:10px\"><B>Question Added Successful<br></B><span></h1><html>","ALERT",JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null,"<html><h1><span style=\"font:-size:10px\"><B>Question Added Successful<br></B>PLEASE UPLOAD DICTIONARY(.dic) & LANGUAGE(.lm) FILE<span></h1><html>","ALERT",JOptionPane.INFORMATION_MESSAGE);
+            admin_home.file_upload.setEnabled(true);
             setVisible(false);
             }catch(Exception e){
                 System.out.print(e);
@@ -184,6 +186,7 @@ public class add_question extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         setVisible(false);
+        
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void qnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_qnActionPerformed

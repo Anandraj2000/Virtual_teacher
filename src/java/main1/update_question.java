@@ -165,7 +165,8 @@ public class update_question extends javax.swing.JFrame {
             ps.setInt(3,Integer.parseInt(qn.getText()));
             ps.executeUpdate();
             checkpoint1=0;
-            JOptionPane.showMessageDialog(null,"<html><h1><span style=\"font:-size:10px\"><B>Question Updated Successful<br></B><span></h1><html>","ALERT",JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null,"<html><h1><span style=\"font:-size:10px\"><B>Question Updated Successful<br>PLEASE UPLOAD DICTIONARY(.dic) & LANGUAGE(.lm) FILE</B><span></h1><html>","ALERT",JOptionPane.INFORMATION_MESSAGE);
+            admin_home.file_upload.setEnabled(true);
             setVisible(false);
             //new admin_home().setVisible(true);
             }catch(Exception e){

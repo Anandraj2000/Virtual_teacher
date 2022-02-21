@@ -226,7 +226,7 @@ public class Admin_sign_up extends javax.swing.JFrame {
     private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
         // TODO add your handling code here:
         setVisible(false);
-        //new Login_form().setVisible(true);   //directing to the Login_form
+        new Login_form_teacher().setVisible(true);   //directing to the Login_form
     }//GEN-LAST:event_backActionPerformed
 
     private void show_passwordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_show_passwordActionPerformed

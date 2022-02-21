@@ -7,6 +7,9 @@ package main1;
 
 
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.Properties;
 import java.util.SplittableRandom;
 import java.util.logging.Level;
@@ -52,6 +55,32 @@ public class student_details extends javax.swing.JFrame {
         initComponents();
         save_details.setEnabled(true);
     }
+    
+    
+    public static void copy_file(String s_file,String d_file) throws IOException 
+    {
+        FileInputStream in = null;
+        FileOutputStream out = null; 
+        try {
+            in = new FileInputStream(s_file);
+            out = new FileOutputStream(d_file); 
+            int c;
+            while ((c = in.read()) != -1) 
+            {
+                out.write(c);
+            }
+        }finally {
+            if (in != null)
+            {
+                in.close();
+            }
+            if (out != null)
+            { 
+                out.close();
+            }
+        }
+    }
+    
     
     public static void generate_qn(int n) throws NullPointerException 
     {
@@ -573,6 +602,8 @@ public class student_details extends javax.swing.JFrame {
                             
                             
                             t_code=u_teacher_code.getText();
+                            copy_file("C:\\Users\\Admin\\Documents\\Project_language_file\\"+t_code+".dic","src\\\\java\\\\grammer_file\\\\dict.dic");
+                            copy_file("C:\\Users\\Admin\\Documents\\Project_language_file\\"+t_code+".lm","src\\\\java\\\\grammer_file\\\\lang.lm");
                             setVisible(false);
                             new speech_to_text().setVisible(true);
                         }

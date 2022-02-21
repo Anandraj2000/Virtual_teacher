@@ -12,6 +12,10 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import main1.Login_form_teacher.*;
+import static main1.Login_form_teacher.t_code;
+import static main1.teacher_file_upload.checkpoint_dic;
+import static main1.teacher_file_upload.checkpoint_lang;
 import static main1.update_question.checkpoint1;
 
 /**
@@ -19,13 +23,14 @@ import static main1.update_question.checkpoint1;
  * @author Admin
  */
 public class admin_home extends javax.swing.JFrame {
-    public static String t_code="room1";
+    //public static String t_code="room1";
 
     /**
      * Creates new form admin_home
      */
     public admin_home() {
         initComponents();
+        file_upload.setEnabled(false);
     }
 
     /**
@@ -37,57 +42,62 @@ public class admin_home extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        add_question = new javax.swing.JButton();
+        update_question = new javax.swing.JButton();
+        delete_question = new javax.swing.JButton();
+        student_response = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         enter_qn = new javax.swing.JTextField();
         set_qn = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        record = new javax.swing.JTable();
+        student_record = new javax.swing.JTable();
+        file_upload = new javax.swing.JButton();
+        logout = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        question_record = new javax.swing.JTable();
+        show_question = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(1363, 716));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton1.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        jButton1.setLabel("ADD QUESTION");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        add_question.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        add_question.setLabel("ADD QUESTION");
+        add_question.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                add_questionActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 180, 225, 102));
+        getContentPane().add(add_question, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 180, 225, 102));
 
-        jButton2.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        jButton2.setLabel("UPDATE QUESTION");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        update_question.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        update_question.setLabel("UPDATE QUESTION");
+        update_question.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                update_questionActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 180, 229, 102));
+        getContentPane().add(update_question, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 180, 229, 102));
 
-        jButton3.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        jButton3.setText("DELETE QUESTION");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        delete_question.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        delete_question.setText("DELETE QUESTION");
+        delete_question.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                delete_questionActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 180, 271, 102));
+        getContentPane().add(delete_question, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 180, 240, 100));
 
-        jButton4.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        jButton4.setLabel("STUDENT RESPONSE");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        student_response.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        student_response.setLabel("STUDENT RESPONSE");
+        student_response.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                student_responseActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 180, 239, 102));
+        getContentPane().add(student_response, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 180, 220, 100));
 
         jButton5.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jButton5.setLabel("NEW QUESTION SET");
@@ -96,7 +106,7 @@ public class admin_home extends javax.swing.JFrame {
                 jButton5ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 290, 529, 65));
+        getContentPane().add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 250, 60));
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -117,9 +127,9 @@ public class admin_home extends javax.swing.JFrame {
         });
         getContentPane().add(set_qn, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 130, 170, 40));
 
-        record.setBackground(new java.awt.Color(204, 204, 204));
-        record.setFont(new java.awt.Font("Times New Roman", 0, 11)); // NOI18N
-        record.setModel(new javax.swing.table.DefaultTableModel(
+        student_record.setBackground(new java.awt.Color(204, 204, 204));
+        student_record.setFont(new java.awt.Font("Times New Roman", 0, 11)); // NOI18N
+        student_record.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null}
             },
@@ -127,30 +137,72 @@ public class admin_home extends javax.swing.JFrame {
                 "NAME", "GENDER", "EMAIL", "SEAT NO", "CLASS"
             }
         ));
-        record.setGridColor(new java.awt.Color(0, 0, 0));
-        jScrollPane1.setViewportView(record);
+        student_record.setGridColor(new java.awt.Color(0, 0, 0));
+        jScrollPane1.setViewportView(student_record);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(72, 380, 1120, 200));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 300, 1120, 150));
+
+        file_upload.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        file_upload.setText("UPLOAD .DIC & .LM FILE");
+        file_upload.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                file_uploadActionPerformed(evt);
+            }
+        });
+        getContentPane().add(file_upload, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 180, 280, 110));
+
+        logout.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        logout.setText("LOGOUT");
+        logout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logoutActionPerformed(evt);
+            }
+        });
+        getContentPane().add(logout, new org.netbeans.lib.awtextra.AbsoluteConstraints(1130, 10, 190, 50));
+
+        question_record.setBackground(new java.awt.Color(153, 153, 153));
+        question_record.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null}
+            },
+            new String [] {
+                "ID", "QUESTION", "ANSWER"
+            }
+        ));
+        jScrollPane2.setViewportView(question_record);
+
+        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 500, 1120, 140));
+
+        show_question.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        show_question.setText("SHOW ALL QUESTION");
+        show_question.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                show_questionActionPerformed(evt);
+            }
+        });
+        getContentPane().add(show_question, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 463, 250, 30));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void add_questionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_questionActionPerformed
         // TODO add your handling code here:
         //setVisible(false);
         new main1.add_question().setVisible(true);
 
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_add_questionActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void update_questionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_update_questionActionPerformed
         // TODO add your handling code here:
+        //setVisible(false);
         new main1.update_question().setVisible(true);
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_update_questionActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void delete_questionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delete_questionActionPerformed
         // TODO add your handling code here:
+        //setVisible(false);
         new main1.delete_question().setVisible(true);
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_delete_questionActionPerformed
 
     private void set_qnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_set_qnActionPerformed
         // TODO add your handling code here:
@@ -179,7 +231,7 @@ public class admin_home extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_set_qnActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void student_responseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_student_responseActionPerformed
         // TODO add your handling code here:
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -190,18 +242,77 @@ public class admin_home extends javax.swing.JFrame {
             {
                 System.out.println("2");
                 String arr[] = {rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6)};
-                DefaultTableModel tb = (DefaultTableModel)record.getModel();
+                DefaultTableModel tb = (DefaultTableModel)student_record.getModel();
                 tb.addRow(arr);
             }
         }catch(Exception e)
         {
                 System.out.print(e);
         }
-    }//GEN-LAST:event_jButton4ActionPerformed
+    }//GEN-LAST:event_student_responseActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void file_uploadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_file_uploadActionPerformed
+        // TODO add your handling code here:
+        setVisible(false);
+        new teacher_file_upload().setVisible(true);
+    }//GEN-LAST:event_file_uploadActionPerformed
+
+    private void logoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutActionPerformed
+        // TODO add your handling code here:
+        
+        if(file_upload.isEnabled())
+        {
+            if(checkpoint_dic && checkpoint_lang)
+            {
+                int j = JOptionPane.showConfirmDialog(null,"DO YOU REALLY WANT TO LOGOUT","SELECT",JOptionPane.YES_NO_OPTION);
+                if(j==0)
+                {
+                  setVisible(false);
+                  new Main_page().setVisible(true);   //logout
+                }
+            }
+            else
+            {
+                JOptionPane.showMessageDialog(null,"<html><h1><span style=\"color:red font:-size:10px\">PLEASE UPLOAD DICTIONARY(.dic) & LANGYAGE(.lm) FILE<span></h1><html>","ALERT",JOptionPane.ERROR_MESSAGE);
+            }
+            
+        }
+        else
+        {
+            int j = JOptionPane.showConfirmDialog(null,"DO YOU REALLY WANT TO LOGOUT","SELECT",JOptionPane.YES_NO_OPTION);
+            if(j==0)
+            {
+              setVisible(false);
+              new Main_page().setVisible(true);   //logout
+            }
+            
+        }
+        
+    }//GEN-LAST:event_logoutActionPerformed
+
+    private void show_questionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_show_questionActionPerformed
+        // TODO add your handling code here:
+        try{
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/project2","root","");
+            Statement st = conn.createStatement();
+            ResultSet rs=st.executeQuery("select * from question_set where teacher_code='"+t_code+"'");
+            while(rs.next())
+            {
+                System.out.println("2");
+                String arr[] = {rs.getString(1),rs.getString(2),rs.getString(3)};
+                DefaultTableModel tb = (DefaultTableModel)question_record.getModel();
+                tb.addRow(arr);
+            }
+        }catch(Exception e)
+        {
+                System.out.print(e);
+        }
+    }//GEN-LAST:event_show_questionActionPerformed
 
     /**
      * @param args the command line arguments
@@ -239,16 +350,21 @@ public class admin_home extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton add_question;
+    private javax.swing.JButton delete_question;
     private javax.swing.JTextField enter_qn;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
+    public static javax.swing.JButton file_upload;
     private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable record;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JButton logout;
+    private javax.swing.JTable question_record;
     private javax.swing.JButton set_qn;
+    private javax.swing.JButton show_question;
+    private javax.swing.JTable student_record;
+    private javax.swing.JButton student_response;
+    private javax.swing.JButton update_question;
     // End of variables declaration//GEN-END:variables
 }
