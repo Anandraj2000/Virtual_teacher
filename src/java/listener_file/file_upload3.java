@@ -14,12 +14,11 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import java.sql.*;
 import grammer_file.Reading_Mode1;
-import grammer_file.speech_to_text2;
+import grammer_file.Practice_viva_room;
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
- */
 
 /**
  *
@@ -380,6 +379,7 @@ public class File_upload3 extends javax.swing.JFrame {
                     //form dictionary
                     for(int i=0;i<noq;i++)
                     {
+                        value1[i+1] = value1[i+1].replaceAll("\n", "\n\n");
                         question_set.put(key1[i],value1[i+1]);          //store the question with there correct question_no
                         //System.out.println(key1[i]+" "+value1[i+1]);
                     }
@@ -436,22 +436,21 @@ public class File_upload3 extends javax.swing.JFrame {
         test_mode = new javax.swing.JButton();
         jScrollPane4 = new javax.swing.JScrollPane();
         hindi = new javax.swing.JTextArea();
-        logout = new javax.swing.JButton();
+        exit = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setUndecorated(true);
-        setPreferredSize(new java.awt.Dimension(1363, 716));
+        setPreferredSize(new java.awt.Dimension(1388, 905));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
         jLabel1.setText("INFORMATION OF WORD FILE");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(177, 50, 249, 44));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 20, 570, 44));
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel2.setText("NUMBER OF QUESTION");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(57, 100, 200, 39));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(57, 100, 220, 39));
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel3.setText("FORMATE OF ANSWER");
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(57, 149, 208, 34));
 
@@ -461,7 +460,7 @@ public class File_upload3 extends javax.swing.JFrame {
                 NOQ1ActionPerformed(evt);
             }
         });
-        getContentPane().add(NOQ1, new org.netbeans.lib.awtextra.AbsoluteConstraints(297, 100, 231, 39));
+        getContentPane().add(NOQ1, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 100, 231, 39));
 
         ansType.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         ansType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ANSWER AT END OF ALL QUESTION(MCQ's)", " ", " " }));
@@ -470,19 +469,19 @@ public class File_upload3 extends javax.swing.JFrame {
                 ansTypeActionPerformed(evt);
             }
         });
-        getContentPane().add(ansType, new org.netbeans.lib.awtextra.AbsoluteConstraints(297, 145, -1, 42));
+        getContentPane().add(ansType, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 150, -1, 42));
 
-        reading_mode.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        reading_mode.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         reading_mode.setText("READING MODE");
         reading_mode.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 reading_modeActionPerformed(evt);
             }
         });
-        getContentPane().add(reading_mode, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 240, 160, 50));
+        getContentPane().add(reading_mode, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 240, 230, 50));
 
         jLabel4.setBackground(new java.awt.Color(51, 255, 255));
-        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel4.setText("UPLOAD TEXT FILE");
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(57, 193, 190, 40));
@@ -494,7 +493,7 @@ public class File_upload3 extends javax.swing.JFrame {
                 file_chooserActionPerformed(evt);
             }
         });
-        getContentPane().add(file_chooser, new org.netbeans.lib.awtextra.AbsoluteConstraints(297, 198, 230, 30));
+        getContentPane().add(file_chooser, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 200, 230, 30));
 
         ta.setColumns(20);
         ta.setRows(5);
@@ -506,7 +505,7 @@ public class File_upload3 extends javax.swing.JFrame {
         ques_area.setRows(5);
         jScrollPane2.setViewportView(ques_area);
 
-        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 160, 267, 236));
+        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 156, 267, 240));
 
         ans_area.setColumns(20);
         ans_area.setRows(5);
@@ -514,36 +513,36 @@ public class File_upload3 extends javax.swing.JFrame {
 
         getContentPane().add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 150, 202, 244));
 
-        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel5.setText("Question");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 120, -1, -1));
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(702, 120, 120, -1));
 
-        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel6.setText("Answer");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 120, -1, -1));
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 120, 100, -1));
 
-        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel7.setText("Uplaoded file");
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 310, -1, -1));
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 310, 150, -1));
 
-        back.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        back.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         back.setText("BACK");
         back.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 backActionPerformed(evt);
             }
         });
-        getContentPane().add(back, new org.netbeans.lib.awtextra.AbsoluteConstraints(1949, 11, 129, -1));
+        getContentPane().add(back, new org.netbeans.lib.awtextra.AbsoluteConstraints(1050, 20, 150, 40));
 
-        test_mode.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        test_mode.setText("TEST_MODE");
+        test_mode.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        test_mode.setText("VIVA_MODE");
         test_mode.setPreferredSize(new java.awt.Dimension(1363, 716));
         test_mode.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 test_modeActionPerformed(evt);
             }
         });
-        getContentPane().add(test_mode, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 240, 170, 50));
+        getContentPane().add(test_mode, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 240, 200, 50));
 
         hindi.setColumns(20);
         hindi.setRows(5);
@@ -551,14 +550,14 @@ public class File_upload3 extends javax.swing.JFrame {
 
         getContentPane().add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 430, 490, 180));
 
-        logout.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        logout.setText("LOG OUT");
-        logout.addActionListener(new java.awt.event.ActionListener() {
+        exit.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        exit.setText("EXIT");
+        exit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                logoutActionPerformed(evt);
+                exitActionPerformed(evt);
             }
         });
-        getContentPane().add(logout, new org.netbeans.lib.awtextra.AbsoluteConstraints(2096, 11, 124, -1));
+        getContentPane().add(exit, new org.netbeans.lib.awtextra.AbsoluteConstraints(1210, 20, 150, 40));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -584,7 +583,7 @@ public class File_upload3 extends javax.swing.JFrame {
                 {
                     setVisible(false);
                     
-                    new listener_file.speech_to_text3().setVisible(true);
+                    new listener_file.Reader().setVisible(true);
                 }
                 
             }
@@ -676,19 +675,18 @@ public class File_upload3 extends javax.swing.JFrame {
     private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
         // TODO add your handling code here:
         setVisible(false);
-        //new Home_page().setVisible(true);       //directing to the Login_form
+        new main1.Main_page().setVisible(true);       //directing to the Login_form
     }//GEN-LAST:event_backActionPerformed
 
-    private void logoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutActionPerformed
+    private void exitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitActionPerformed
         // TODO add your handling code here:
-        int j = JOptionPane.showConfirmDialog(null,"DO YOU REALLY WANT TO LOGOUT","SELECT",JOptionPane.YES_NO_OPTION);
+       int j = JOptionPane.showConfirmDialog(null,"DO YOU REALLY WANT TO CLOSE","SELECT",JOptionPane.YES_NO_OPTION);
         if(j==0)
         {
-          setVisible(false);
-          //new Login_form().setVisible(true);   //logout
+          System.exit(0);   //exit the application
         }
         
-    }//GEN-LAST:event_logoutActionPerformed
+    }//GEN-LAST:event_exitActionPerformed
 
     private void test_modeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_test_modeActionPerformed
         // TODO add your handling code here:
@@ -706,7 +704,7 @@ public class File_upload3 extends javax.swing.JFrame {
                 if(checkpoint2 && checkpoint3)
                 {
                     setVisible(false);
-                    new speech_to_text2().setVisible(true);
+                    new Practice_viva_room().setVisible(true);
                 }
 
             }
@@ -766,6 +764,7 @@ public class File_upload3 extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> ansType;
     private javax.swing.JTextArea ans_area;
     private javax.swing.JButton back;
+    private javax.swing.JButton exit;
     private javax.swing.JButton file_chooser;
     private javax.swing.JTextArea hindi;
     private javax.swing.JLabel jLabel1;
@@ -779,7 +778,6 @@ public class File_upload3 extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JButton logout;
     private javax.swing.JTextArea ques_area;
     private javax.swing.JButton reading_mode;
     private javax.swing.JTextArea ta;

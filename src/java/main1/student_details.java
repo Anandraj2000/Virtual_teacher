@@ -24,6 +24,7 @@ import java.sql.*;
 import java.util.Dictionary;
 import java.util.Enumeration;
 import java.util.Hashtable;
+import java.util.Random;
 
 
 /**
@@ -84,9 +85,28 @@ public class student_details extends javax.swing.JFrame {
     
     public static void generate_qn(int n) throws NullPointerException 
     {
-        SplittableRandom splittableRandom = new SplittableRandom();
+        Random random = new Random();
+        int i=0,r_no;
+        while(i<n)
+        {
+            r_no = random.nextInt(range.length);
+            System.out.println("random="+random);
+            key[i]=""+range[r_no];
+            i++;
+            String[] copy = new String[range.length - 1];
+            for (int k = 0, j = 0; k <range.length; k++) 
+            {
+                if (k != r_no) {
+                    copy[j++] = range[k];
+                }
+            }
+            range = copy.clone();
+        }
+            
+            
+    
         //StringBuilder sb = new StringBuilder();
-        int i=0,random;
+        /*int i=0,random;
         while(i<n)
         {
             random=splittableRandom.nextInt(1,10);
@@ -115,7 +135,7 @@ public class student_details extends javax.swing.JFrame {
                             }
 
                         }*/
-                        for(int j=0;j<key.length;j++)
+                        /*for(int j=0;j<key.length;j++)
                         {
                             System.out.println("key="+key.length);
                             System.out.println("keyV="+(""+random).equals(key[j]));
@@ -139,9 +159,9 @@ public class student_details extends javax.swing.JFrame {
                     
                 }
             }
-        }
+        }*/
         System.out.println("keys:"+key.toString());
-    }
+}
     
     public static void generate_OTP(int n)
     {
@@ -234,42 +254,59 @@ public class student_details extends javax.swing.JFrame {
         u_teacher_code = new javax.swing.JTextField();
         male = new javax.swing.JRadioButton();
         female = new javax.swing.JRadioButton();
+        exit = new javax.swing.JButton();
+        back = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1363, 716));
+        setPreferredSize(new java.awt.Dimension(1388, 905));
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
         jLabel1.setText("STUDENT DETAILS");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 38, 377, 43));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 132, 251, 41));
 
         jLabel3.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel3.setText("FIRST NAME");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(267, 87, 251, 40));
 
         jLabel4.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel4.setText("MIDDEL NAME");
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(267, 145, 251, 45));
 
         jLabel5.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel5.setText("LAST NAME");
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(267, 208, 251, 50));
 
         jLabel6.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel6.setText("GENDER");
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(267, 276, 251, 38));
+        getContentPane().add(f_name, new org.netbeans.lib.awtextra.AbsoluteConstraints(594, 87, 293, 40));
+        getContentPane().add(m_name, new org.netbeans.lib.awtextra.AbsoluteConstraints(594, 145, 293, 40));
+        getContentPane().add(l_name, new org.netbeans.lib.awtextra.AbsoluteConstraints(594, 208, 293, 42));
 
         jLabel7.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel7.setText("SEAT NUMBER");
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(267, 325, 251, 44));
 
         jLabel8.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel8.setText("EMAIL");
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(267, 377, 251, 39));
+        getContentPane().add(seat_no, new org.netbeans.lib.awtextra.AbsoluteConstraints(594, 327, 293, 44));
 
         email.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 emailActionPerformed(evt);
             }
         });
+        getContentPane().add(email, new org.netbeans.lib.awtextra.AbsoluteConstraints(594, 377, 293, 42));
 
         u_otp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 u_otpActionPerformed(evt);
             }
         });
+        getContentPane().add(u_otp, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 430, 241, 37));
 
         save_details.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         save_details.setText("SAVE");
@@ -278,6 +315,7 @@ public class student_details extends javax.swing.JFrame {
                 save_detailsActionPerformed(evt);
             }
         });
+        getContentPane().add(save_details, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 600, 240, 50));
 
         verify_email.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         verify_email.setText("VERIFY(ENTER OTP)");
@@ -286,9 +324,12 @@ public class student_details extends javax.swing.JFrame {
                 verify_emailActionPerformed(evt);
             }
         });
+        getContentPane().add(verify_email, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 430, 220, 40));
 
         jLabel10.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel10.setText("CLASS");
+        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(267, 488, 251, 37));
+        getContentPane().add(s_class, new org.netbeans.lib.awtextra.AbsoluteConstraints(594, 487, 290, 40));
 
         send_otp.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         send_otp.setText("SEND OTP");
@@ -297,19 +338,23 @@ public class student_details extends javax.swing.JFrame {
                 send_otpActionPerformed(evt);
             }
         });
+        getContentPane().add(send_otp, new org.netbeans.lib.awtextra.AbsoluteConstraints(905, 377, 120, 40));
 
         jLabel9.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel9.setText("TEACHER CODE");
+        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(267, 531, 251, 34));
 
         u_teacher_code.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 u_teacher_codeActionPerformed(evt);
             }
         });
+        getContentPane().add(u_teacher_code, new org.netbeans.lib.awtextra.AbsoluteConstraints(594, 534, 290, 40));
 
         buttonGroup1.add(male);
         male.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         male.setText("MALE");
+        getContentPane().add(male, new org.netbeans.lib.awtextra.AbsoluteConstraints(594, 276, 116, -1));
 
         buttonGroup1.add(female);
         female.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
@@ -319,116 +364,25 @@ public class student_details extends javax.swing.JFrame {
                 femaleActionPerformed(evt);
             }
         });
+        getContentPane().add(female, new org.netbeans.lib.awtextra.AbsoluteConstraints(712, 276, 148, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 251, Short.MAX_VALUE))
-                .addGap(12, 12, 12)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(save_details, javax.swing.GroupLayout.PREFERRED_SIZE, 351, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(188, 188, 188))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addGap(64, 64, 64)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(verify_email)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(u_otp, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(f_name)
-                                            .addComponent(m_name)
-                                            .addComponent(l_name)
-                                            .addComponent(seat_no)
-                                            .addComponent(email, javax.swing.GroupLayout.PREFERRED_SIZE, 293, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(18, 18, 18)
-                                        .addComponent(send_otp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(u_teacher_code, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(s_class, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(male, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addComponent(female, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                        .addGap(0, 0, Short.MAX_VALUE)))))
-                        .addGap(233, 233, 233))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 377, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(132, 132, 132)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(38, 38, 38)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(f_name)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(m_name)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(l_name, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(male)
-                        .addComponent(female)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(seat_no, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(email, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(send_otp, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(u_otp, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(verify_email, javax.swing.GroupLayout.DEFAULT_SIZE, 51, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(s_class, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(u_teacher_code, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(40, 40, 40)
-                .addComponent(save_details, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(83, 83, 83))
-        );
+        exit.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        exit.setText("EXIT");
+        exit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                exitActionPerformed(evt);
+            }
+        });
+        getContentPane().add(exit, new org.netbeans.lib.awtextra.AbsoluteConstraints(1170, 20, 130, 40));
+
+        back.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        back.setText("BACK");
+        back.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backActionPerformed(evt);
+            }
+        });
+        getContentPane().add(back, new org.netbeans.lib.awtextra.AbsoluteConstraints(1030, 20, 120, 40));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -489,6 +443,10 @@ public class student_details extends javax.swing.JFrame {
         {
             JOptionPane.showMessageDialog(null,"<html><h1><span style=\"color:red font:-size:10px\">PLEASE ENTER THE EMAIL Ii.e BSC-CS<span></h1><html>","ALERT",JOptionPane.ERROR_MESSAGE);
         }
+        else if(!u_otp.getText().isEmpty() && u_otp.getText().equals(otp))
+        {
+            JOptionPane.showMessageDialog(null,"<html><h1><span style=\"color:red font:-size:10px\">TYPE CORRECT OTP<span></h1><html>","ALERT",JOptionPane.ERROR_MESSAGE);
+        }
         else{
             System.out.println("DONE1");
             try{
@@ -496,13 +454,13 @@ public class student_details extends javax.swing.JFrame {
                 Class.forName("com.mysql.cj.jdbc.Driver");
                 Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/project2","root","");
                 Statement st = conn.createStatement();
-                ResultSet rs=st.executeQuery("select * from admin_records where teacher_code='"+u_teacher_code.getText()+"'");
+                ResultSet rs=st.executeQuery("select * from teacher_records where teacher_code='"+u_teacher_code.getText()+"'");
                 
                 int j=0;
                 while(rs.next())
                 {
                     System.out.println("i="+j);
-                    count=rs.getInt(6);
+                    count=rs.getInt(5);
                     key = new String[count];
    
                     //System.out.println("count"+count);
@@ -605,7 +563,7 @@ public class student_details extends javax.swing.JFrame {
                             copy_file("C:\\Users\\Admin\\Documents\\Project_language_file\\"+t_code+".dic","src\\\\java\\\\grammer_file\\\\dict.dic");
                             copy_file("C:\\Users\\Admin\\Documents\\Project_language_file\\"+t_code+".lm","src\\\\java\\\\grammer_file\\\\lang.lm");
                             setVisible(false);
-                            new speech_to_text().setVisible(true);
+                            new Viva_room1().setVisible(true);
                         }
                     }
                 }
@@ -648,6 +606,21 @@ public class student_details extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_femaleActionPerformed
 
+    private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
+        // TODO add your handling code here:
+        setVisible(false);
+        new Main_page().setVisible(true);
+    }//GEN-LAST:event_backActionPerformed
+
+    private void exitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitActionPerformed
+        // TODO add your handling code here:
+        int j = JOptionPane.showConfirmDialog(null,"DO YOU REALLY WANT TO CLOSE","SELECT",JOptionPane.YES_NO_OPTION);
+        if(j==0)
+        {
+          System.exit(0);   //exit the application
+        }
+    }//GEN-LAST:event_exitActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -684,8 +657,10 @@ public class student_details extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton back;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JTextField email;
+    private javax.swing.JButton exit;
     private javax.swing.JTextField f_name;
     private javax.swing.JRadioButton female;
     private javax.swing.JLabel jLabel1;

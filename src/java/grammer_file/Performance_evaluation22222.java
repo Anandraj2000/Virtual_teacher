@@ -22,17 +22,17 @@ import static listener_file.File_upload3.answer_set;
 import static listener_file.File_upload3.noq;
 import static listener_file.File_upload3.question_set;
 import static listener_file.File_upload3.key;
-import static grammer_file.speech_to_text2.score;
-import static grammer_file.speech_to_text2.*;
-//import static main1.speech_to_text.score;
+import static grammer_file.Practice_viva_room.score;
+import static grammer_file.Practice_viva_room.*;
+//import static main1.Viva_room1.score;
 import java.util.Enumeration;
 import java.util.Hashtable;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import static main1.speech_to_text.identify;
+//import static main1.Viva_room1.identify;
 //import static main1.student_details.key;
-//import speech_to_text2.answer_set;
+//import Practice_viva_room.answer_set;
 
 
 //import main.Home_page;
@@ -59,7 +59,7 @@ public class Performance_evaluation22222 extends javax.swing.JFrame {
         for (Enumeration k = answer_set.keys(); k.hasMoreElements();)
         {
             String temp_key1 = (String)k.nextElement();
-            result_content = "\n"+result_content +"\n"+(c+1)+": "+ question_set.get(temp_key1)+"\nCORRECT ANSWER: "+answer_set1.get(temp_key1)+"\nYOUR ANSWER: "+speech_to_text.user_answer.get(temp_key1)+"\nTIME= "+speech_to_text.user_sec.get(temp_key1)+" sec"+"\n";
+            result_content = "\n"+result_content +"\n"+(c+1)+": "+ question_set.get(temp_key1)+"\nCORRECT ANSWER: "+answer_set1.get(temp_key1)+"\nYOUR ANSWER: "+Viva_room1.user_answer.get(temp_key1)+"\nTIME= "+Viva_room1.user_sec.get(temp_key1)+" sec"+"\n";
             c = c + 1;
         }*/
         int count1=0;
@@ -131,151 +131,89 @@ public class Performance_evaluation22222 extends javax.swing.JFrame {
         feedback = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         average_time = new javax.swing.JLabel();
-        LOGOUT = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
+        setPreferredSize(new java.awt.Dimension(1388, 905));
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel1.setText("ANALYSIS OF YOUR PERFORMANCE");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(546, 64, -1, 39));
 
         analysis.setColumns(20);
         analysis.setRows(5);
         jScrollPane1.setViewportView(analysis);
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(35, 154, 957, 444));
+
+        jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel2.setText("TOTAL NO OF QUESTION:");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(996, 183, -1, 33));
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel3.setText("CORRECT ANSWERED:");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(996, 229, 225, 34));
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel4.setText("WRONG ANSWERED:");
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 280, 225, 30));
 
-        back_to_home_page.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        total1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                total1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(total1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1230, 190, 110, 33));
+
+        correct_answer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                correct_answerActionPerformed(evt);
+            }
+        });
+        getContentPane().add(correct_answer, new org.netbeans.lib.awtextra.AbsoluteConstraints(1230, 230, 110, 30));
+        getContentPane().add(wrong_answer, new org.netbeans.lib.awtextra.AbsoluteConstraints(1230, 280, 110, 32));
+
+        back_to_home_page.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         back_to_home_page.setText("HOME PAGE");
         back_to_home_page.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 back_to_home_pageActionPerformed(evt);
             }
         });
+        getContentPane().add(back_to_home_page, new org.netbeans.lib.awtextra.AbsoluteConstraints(88, 14, -1, 39));
 
-        exit.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        exit.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         exit.setText("EXIT");
         exit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 exitActionPerformed(evt);
             }
         });
+        getContentPane().add(exit, new org.netbeans.lib.awtextra.AbsoluteConstraints(1138, 11, 120, 42));
 
-        save.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        save.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         save.setText("SAVE");
         save.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 saveActionPerformed(evt);
             }
         });
+        getContentPane().add(save, new org.netbeans.lib.awtextra.AbsoluteConstraints(35, 89, 151, 47));
 
-        feedback.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        feedback.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         feedback.setText("FEEDBACK");
         feedback.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 feedbackActionPerformed(evt);
             }
         });
+        getContentPane().add(feedback, new org.netbeans.lib.awtextra.AbsoluteConstraints(296, 15, 210, -1));
 
-        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel6.setText("AVEARGE TIME TAKEN:");
-
-        LOGOUT.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        LOGOUT.setText("LOGOUT");
-        LOGOUT.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                LOGOUTActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(35, 35, 35)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(save, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel1)
-                        .addGap(502, 502, 502))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 957, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(53, 53, 53)
-                                .addComponent(back_to_home_page)
-                                .addGap(27, 27, 27)
-                                .addComponent(feedback, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(total1)
-                                    .addComponent(correct_answer)
-                                    .addComponent(wrong_answer, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE)
-                                    .addComponent(average_time, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(LOGOUT, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(exit)))
-                        .addGap(18, 18, 18))))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(exit, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(LOGOUT, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(back_to_home_page, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(feedback, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(80, 80, 80)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(total1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(correct_answer, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)
-                                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(wrong_answer, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(average_time, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(51, 51, 51)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 444, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(36, 36, 36)
-                        .addComponent(save, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(118, Short.MAX_VALUE))
-        );
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 320, 225, 33));
+        getContentPane().add(average_time, new org.netbeans.lib.awtextra.AbsoluteConstraints(1248, 310, 155, 33));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -286,7 +224,7 @@ public class Performance_evaluation22222 extends javax.swing.JFrame {
         if(j==0)
         {
             
-            //new feedback().setVisible(true);
+            new feedback().setVisible(true);
              //
         }
         else
@@ -308,8 +246,8 @@ public class Performance_evaluation22222 extends javax.swing.JFrame {
 
     private void saveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveActionPerformed
         // TODO add your handling code here:
-          //Reading_Mode.forwhome = "Quiz";
-          //new Save_file().setVisible(true);
+          Performance_evaluation1.forwhome = "Personal_user";
+          new Save_file().setVisible(true);
     }//GEN-LAST:event_saveActionPerformed
 
     private void feedbackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_feedbackActionPerformed
@@ -317,15 +255,13 @@ public class Performance_evaluation22222 extends javax.swing.JFrame {
         //new feedback().setVisible(true);
     }//GEN-LAST:event_feedbackActionPerformed
 
-    private void LOGOUTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LOGOUTActionPerformed
+    private void total1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_total1ActionPerformed
         // TODO add your handling code here:
-        int j = JOptionPane.showConfirmDialog(null,"DO YOU REALLY WANT TO LOGOUT","SELECT",JOptionPane.YES_NO_OPTION);
-        if(j==0)
-        {
-          setVisible(false);
-          //new Login_form().setVisible(true);  //
-        }
-    }//GEN-LAST:event_LOGOUTActionPerformed
+    }//GEN-LAST:event_total1ActionPerformed
+
+    private void correct_answerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_correct_answerActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_correct_answerActionPerformed
 
     /**
      * @param args the command line arguments
@@ -396,7 +332,6 @@ public class Performance_evaluation22222 extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton LOGOUT;
     private static javax.swing.JTextArea analysis;
     private static javax.swing.JLabel average_time;
     private javax.swing.JButton back_to_home_page;

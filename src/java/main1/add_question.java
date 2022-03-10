@@ -10,7 +10,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
-import static main1.Login_form_teacher.t_code;
+import static main1.Teacher_Login_Form.t_code;
 
 /**
  *
@@ -44,7 +44,7 @@ public class add_question extends javax.swing.JFrame {
         question = new javax.swing.JTextArea();
         answer = new javax.swing.JTextField();
         save_question = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        Back = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -79,11 +79,11 @@ public class add_question extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
-        jButton2.setText("BACK");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        Back.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        Back.setText("BACK");
+        Back.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                BackActionPerformed(evt);
             }
         });
 
@@ -108,7 +108,7 @@ public class add_question extends javax.swing.JFrame {
                 .addGap(317, 317, 317)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 201, Short.MAX_VALUE)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(Back, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(44, 44, 44))
         );
         layout.setVerticalGroup(
@@ -120,7 +120,7 @@ public class add_question extends javax.swing.JFrame {
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(Back, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(36, 36, 36)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(qn, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)
@@ -172,7 +172,7 @@ public class add_question extends javax.swing.JFrame {
             ps.setString(4,t_code);
             ps.executeUpdate();
             JOptionPane.showMessageDialog(null,"<html><h1><span style=\"font:-size:10px\"><B>Question Added Successful<br></B>PLEASE UPLOAD DICTIONARY(.dic) & LANGUAGE(.lm) FILE<span></h1><html>","ALERT",JOptionPane.INFORMATION_MESSAGE);
-            admin_home.file_upload.setEnabled(true);
+            Teacher_Home_Page.file_upload.setEnabled(true);
             setVisible(false);
             }catch(Exception e){
                 System.out.print(e);
@@ -183,11 +183,11 @@ public class add_question extends javax.swing.JFrame {
             
     }//GEN-LAST:event_save_questionActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void BackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackActionPerformed
         // TODO add your handling code here:
         setVisible(false);
         
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_BackActionPerformed
 
     private void qnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_qnActionPerformed
         // TODO add your handling code here:
@@ -230,8 +230,8 @@ public class add_question extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Back;
     private javax.swing.JTextField answer;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

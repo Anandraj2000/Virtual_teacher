@@ -5,6 +5,8 @@
  */
 package main1;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Admin
@@ -33,9 +35,11 @@ public class Main_page extends javax.swing.JFrame {
         personal = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
+        jButton1 = new javax.swing.JButton();
+        feedback = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1363, 716));
+        setPreferredSize(new java.awt.Dimension(1388, 905));
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -70,6 +74,22 @@ public class Main_page extends javax.swing.JFrame {
         jTextArea1.setText("FOR TEACHER:\n1. Teacher have to create an account first using email and set username & password.\n2. During sign-up process teacher need to set teacher-code which is unique for \n   each one so teacher must share this teacher-code to student to conduct viva.\n\nFOR STUDENT:\n1. Using teacher-code shared by respected teacher student need to fill one form\n   having name ,class, seat_no, and email.\n2. Only one response is possible through one email and email is also verify by\n   sending OTP to that email.\n\nFOR PERSONAL:\n1. User need only text file of question & answer but only MCQ's formate with answers\n   in the last pages.\n2. user having 2 modes first is reader(read question & answer) and second is viva.");
         jScrollPane1.setViewportView(jTextArea1);
 
+        jButton1.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
+        jButton1.setText("EXIT");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        feedback.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        feedback.setText("FEEDBACK");
+        feedback.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                feedbackActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -91,11 +111,21 @@ public class Main_page extends javax.swing.JFrame {
                         .addGap(153, 153, 153)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 687, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap())))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(42, 42, 42)
+                .addComponent(feedback, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(66, 66, 66))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(68, 68, 68)
+                .addGap(27, 27, 27)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(feedback, javax.swing.GroupLayout.DEFAULT_SIZE, 53, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(49, 49, 49)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -104,7 +134,7 @@ public class Main_page extends javax.swing.JFrame {
                     .addComponent(personal, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(41, 41, 41)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 325, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(64, Short.MAX_VALUE))
+                .addContainerGap(46, Short.MAX_VALUE))
         );
 
         pack();
@@ -113,7 +143,7 @@ public class Main_page extends javax.swing.JFrame {
     private void teacherActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_teacherActionPerformed
         // TODO add your handling code here:
         setVisible(false);
-        new Login_form_teacher().setVisible(true);
+        new Teacher_Login_Form().setVisible(true);
     }//GEN-LAST:event_teacherActionPerformed
 
     private void studentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_studentActionPerformed
@@ -127,6 +157,20 @@ public class Main_page extends javax.swing.JFrame {
         setVisible(false);
         new listener_file.File_upload3().setVisible(true);
     }//GEN-LAST:event_personalActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        int j = JOptionPane.showConfirmDialog(null,"DO YOU REALLY WANT TO CLOSE","SELECT",JOptionPane.YES_NO_OPTION);
+        if(j==0)
+        {
+          System.exit(0);   //exit the application
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void feedbackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_feedbackActionPerformed
+        // TODO add your handling code here:
+        new grammer_file.feedback().setVisible(true);
+    }//GEN-LAST:event_feedbackActionPerformed
 
     /**
      * @param args the command line arguments
@@ -164,6 +208,8 @@ public class Main_page extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton feedback;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea1;

@@ -15,6 +15,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.time.LocalDateTime;
 
 import java.util.Dictionary;
 import static main1.student_details.*;
@@ -22,15 +23,15 @@ import static main1.student_details.answer_set;
 import static main1.student_details.count;
 import static main1.student_details.question_set;
 import static main1.student_details.t_code;
-import static main1.speech_to_text.score;
+import static main1.Viva_room1.score;
 import java.util.Enumeration;
 import java.util.Hashtable;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import static main1.speech_to_text.identify;
+//import static main1.Viva_room1.identify;
 import static main1.student_details.key;
-//import speech_to_text.answer_set;
+//import Viva_room1.answer_set;
 
 
 //import main.Home_page;
@@ -42,9 +43,10 @@ import static main1.student_details.key;
  */
 public class Performance_evaluation1 extends javax.swing.JFrame {
     public static String result_content = "";
+    public static String forwhome = "";
     public static int score1 = 0;
-    public static Dictionary answer_set1 = new Hashtable();
-    public static Dictionary question_set1 = new Hashtable();
+    //public static Dictionary answer_set1 = new Hashtable();
+    //public static Dictionary question_set1 = new Hashtable();
     public static int noq=count;
     
 
@@ -57,7 +59,7 @@ public class Performance_evaluation1 extends javax.swing.JFrame {
         for (Enumeration k = answer_set.keys(); k.hasMoreElements();)
         {
             String temp_key1 = (String)k.nextElement();
-            result_content = "\n"+result_content +"\n"+(c+1)+": "+ question_set.get(temp_key1)+"\nCORRECT ANSWER: "+answer_set1.get(temp_key1)+"\nYOUR ANSWER: "+speech_to_text.user_answer.get(temp_key1)+"\nTIME= "+speech_to_text.user_sec.get(temp_key1)+" sec"+"\n";
+            result_content = "\n"+result_content +"\n"+(c+1)+": "+ question_set.get(temp_key1)+"\nCORRECT ANSWER: "+answer_set1.get(temp_key1)+"\nYOUR ANSWER: "+Viva_room1.user_answer.get(temp_key1)+"\nTIME= "+Viva_room1.user_sec.get(temp_key1)+" sec"+"\n";
             c = c + 1;
         }*/
         int count1=0;
@@ -66,7 +68,7 @@ public class Performance_evaluation1 extends javax.swing.JFrame {
             System.out.println(count1 +"l="+(key.length));
             //display.setText("\n"+key[count]+": "+question_set.get(key[count]));
             //display.setText(display.getText()+"\n"+"Answer"+": "+answer_set.get(key[count]));
-            result_content = "\n"+result_content +"\n"+(count1+1)+": "+ question_set.get(key[count1])+"\nCORRECT ANSWER: "+answer_set.get(key[count1])+"\nYOUR ANSWER: "+speech_to_text.user_answer.get(key[count1])+"\nTIME= "+speech_to_text.user_sec.get(key[count1])+" sec"+"\n";
+            result_content = "\n"+result_content +"\n"+(count1+1)+": "+ question_set.get(key[count1])+"\nCORRECT ANSWER: "+answer_set.get(key[count1])+"\nYOUR ANSWER: "+Viva_room1.user_answer.get(key[count1])+"\nTIME= "+Viva_room1.user_sec.get(key[count1])+" sec"+"\n";
             
             count1++;
         }
@@ -74,7 +76,7 @@ public class Performance_evaluation1 extends javax.swing.JFrame {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/project2","root","");
-            PreparedStatement ps=conn.prepareStatement("insert into "+t_code+" (name,gender,email,seat_no,class,total_question,score)values(?,?,?,?,?,?,?)");
+            PreparedStatement ps=conn.prepareStatement("insert into "+t_code+" (name,gender,email,seat_no,class,total_question,score,date)values(?,?,?,?,?,?,?,?)");
             
             ps.setString(1,name1);
             ps.setString(2,gender1);
@@ -83,6 +85,8 @@ public class Performance_evaluation1 extends javax.swing.JFrame {
             ps.setString(5,s_class1);
             ps.setString(6,""+noq);
             ps.setString(7,""+score);
+            LocalDateTime now = LocalDateTime.now();
+            ps.setString(8,""+now);
             ps.executeUpdate();
         } catch (Exception ex) {
             Logger.getLogger(Performance_evaluation1.class.getName()).log(Level.SEVERE, null, ex);
@@ -94,7 +98,7 @@ public class Performance_evaluation1 extends javax.swing.JFrame {
         total1.setText(noq+"");
         correct_answer.setText(""+score);
         //correct_answer.setText(""+score);
-        //wrong_answer.setText(""+(File_upload.noq-score));
+        wrong_answer.setText(""+(noq-score));
         //average_time.setText(""+average+"\tsec");
         
     }
@@ -129,10 +133,10 @@ public class Performance_evaluation1 extends javax.swing.JFrame {
         feedback = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         average_time = new javax.swing.JLabel();
-        LOGOUT = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
+        setPreferredSize(new java.awt.Dimension(1388, 905));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setText("ANALYSIS OF YOUR PERFORMANCE");
@@ -185,14 +189,6 @@ public class Performance_evaluation1 extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel6.setText("AVEARGE TIME TAKEN:");
 
-        LOGOUT.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        LOGOUT.setText("LOGOUT");
-        LOGOUT.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                LOGOUTActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -213,37 +209,34 @@ public class Performance_evaluation1 extends javax.swing.JFrame {
                                 .addComponent(back_to_home_page)
                                 .addGap(27, 27, 27)
                                 .addComponent(feedback, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(total1)
                                     .addComponent(correct_answer)
                                     .addComponent(wrong_answer, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE)
-                                    .addComponent(average_time, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(LOGOUT, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(exit)))
-                        .addGap(18, 18, 18))))
+                                    .addComponent(average_time, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(18, 18, 18))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(exit, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(45, 45, 45))))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(exit, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(LOGOUT, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(back_to_home_page, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(feedback, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(12, 12, 12)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(back_to_home_page, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(feedback, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(exit, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -272,7 +265,7 @@ public class Performance_evaluation1 extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(36, 36, 36)
                         .addComponent(save, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(118, Short.MAX_VALUE))
+                .addContainerGap(117, Short.MAX_VALUE))
         );
 
         pack();
@@ -284,7 +277,7 @@ public class Performance_evaluation1 extends javax.swing.JFrame {
         if(j==0)
         {
             
-            //new feedback().setVisible(true);
+            new grammer_file.feedback().setVisible(true);
              //
         }
         else
@@ -300,30 +293,20 @@ public class Performance_evaluation1 extends javax.swing.JFrame {
         {
             analysis.setText("");
           setVisible(false);
-          //new Home_page().setVisible(true);  //
+          new Main_page().setVisible(true);  //
         }
     }//GEN-LAST:event_back_to_home_pageActionPerformed
 
     private void saveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveActionPerformed
         // TODO add your handling code here:
-          //Reading_Mode.forwhome = "Quiz";
-          //new Save_file().setVisible(true);
+          forwhome = "Student";
+          new grammer_file.Save_file().setVisible(true);
     }//GEN-LAST:event_saveActionPerformed
 
     private void feedbackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_feedbackActionPerformed
         // TODO add your handling code here:
-        //new feedback().setVisible(true);
+        new grammer_file.feedback().setVisible(true);
     }//GEN-LAST:event_feedbackActionPerformed
-
-    private void LOGOUTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LOGOUTActionPerformed
-        // TODO add your handling code here:
-        int j = JOptionPane.showConfirmDialog(null,"DO YOU REALLY WANT TO LOGOUT","SELECT",JOptionPane.YES_NO_OPTION);
-        if(j==0)
-        {
-          setVisible(false);
-          //new Login_form().setVisible(true);  //
-        }
-    }//GEN-LAST:event_LOGOUTActionPerformed
 
     /**
      * @param args the command line arguments
@@ -378,7 +361,6 @@ public class Performance_evaluation1 extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton LOGOUT;
     private static javax.swing.JTextArea analysis;
     private static javax.swing.JLabel average_time;
     private javax.swing.JButton back_to_home_page;

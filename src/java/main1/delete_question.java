@@ -18,7 +18,7 @@ import javax.swing.table.DefaultTableModel;
  * @author Admin
  */
 public class delete_question extends javax.swing.JFrame {
-    public static int checkpoint1=0;
+    public static int question_id_exist=0;
 
     /**
      * Creates new form add_question
@@ -44,9 +44,9 @@ public class delete_question extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         question = new javax.swing.JTextArea();
         answer = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        delete_question = new javax.swing.JButton();
+        Back = new javax.swing.JButton();
+        Search_question = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -67,27 +67,27 @@ public class delete_question extends javax.swing.JFrame {
         question.setRows(5);
         jScrollPane1.setViewportView(question);
 
-        jButton1.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        jButton1.setText("DELETE");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        delete_question.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        delete_question.setText("DELETE");
+        delete_question.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                delete_questionActionPerformed(evt);
             }
         });
 
-        jButton2.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
-        jButton2.setText("BACK");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        Back.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        Back.setText("BACK");
+        Back.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                BackActionPerformed(evt);
             }
         });
 
-        jButton3.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        jButton3.setText("SEARCH");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        Search_question.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        Search_question.setText("SEARCH");
+        Search_question.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                Search_questionActionPerformed(evt);
             }
         });
 
@@ -106,16 +106,16 @@ public class delete_question extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(qn, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(95, 95, 95)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(Search_question, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane1)
                     .addComponent(answer)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(delete_question, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(317, 317, 317)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 201, Short.MAX_VALUE)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(Back, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(44, 44, 44))
         );
         layout.setVerticalGroup(
@@ -127,12 +127,12 @@ public class delete_question extends javax.swing.JFrame {
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(Back, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(36, 36, 36)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(qn, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(Search_question, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -142,16 +142,16 @@ public class delete_question extends javax.swing.JFrame {
                     .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(answer, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(delete_question, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(176, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void delete_questionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delete_questionActionPerformed
         // TODO add your handling code here:
-    if(checkpoint1==1)
+    if(question_id_exist==1)
     {
         
         try{
@@ -163,7 +163,7 @@ public class delete_question extends javax.swing.JFrame {
             //ps.setString(2,question.getText());
             //ps.setString(3,answer.getText());
             ps.execute();
-            checkpoint1=0;
+            question_id_exist=0;
             JOptionPane.showMessageDialog(null,"<html><h1><span style=\"font:-size:10px\"><B>Question Deleted Successful<br></B><span></h1><html>","ALERT",JOptionPane.INFORMATION_MESSAGE);
             setVisible(false);
             //new admin_home().setVisible(true);
@@ -173,15 +173,15 @@ public class delete_question extends javax.swing.JFrame {
     }       
             //new add_question().setVisible(true);
             
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_delete_questionActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void BackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackActionPerformed
         // TODO add your handling code here:
-        checkpoint1=0;
+        question_id_exist=0;
         setVisible(false);
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_BackActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void Search_questionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Search_questionActionPerformed
         // TODO add your handling code here:
     if(!qn.getText().isEmpty())  
     {
@@ -197,12 +197,12 @@ public class delete_question extends javax.swing.JFrame {
                answer.setText(rs.getString(3));
                qn.setEditable(false);
             }
-            checkpoint1=1;
+            question_id_exist=1;
             }catch(Exception e){
                 System.out.print(e);
             }
     }
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_Search_questionActionPerformed
 
     /**
      * @param args the command line arguments
@@ -243,10 +243,10 @@ public class delete_question extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Back;
+    private javax.swing.JButton Search_question;
     private javax.swing.JTextField answer;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton delete_question;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

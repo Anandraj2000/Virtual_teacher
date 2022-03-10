@@ -14,7 +14,8 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import java.sql.*;
 import grammer_file.Reading_Mode1;
-import static main1.Login_form_teacher.t_code;
+import javax.swing.table.DefaultTableModel;
+import static main1.Teacher_Login_Form.t_code;
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -29,24 +30,26 @@ import static main1.Login_form_teacher.t_code;
 public class teacher_file_upload extends javax.swing.JFrame {
     
     //public static String name1 = "ANand";
-    public static int noq = 0;  //creting this because of its avoid unneccesary typecasting from Sting to Int
-    public static String[] key;
+    //public static int noq = 0;  //creting this because of its avoid unneccesary typecasting from Sting to Int
+    //public static String[] key;
     //public String[] sample;
-    public boolean val_key;
-    public int k_count=0;
+    //public boolean val_key;
+    //public int k_count=0;
     //public static String uploaded_file_name;
-    public static String file_path = "";
+    //public static String file_path = "";
     //public String[] key1 = new String[noq];
     public boolean checkpoint1=false;
     public boolean checkpoint2=false;
     public boolean checkpoint3=true;
-    public String keyword = "";
-    public static String question_set_file_path = "";
+    //public String keyword = "";
+    //public static String question_set_file_path = "";
     public static String dictionary_file_path = "";
     public static String language_file_path = "";
-    public static String read="";
+    //public static String read="";
+    public static String answer_f="";
     public static boolean checkpoint_dic=false;
     public static boolean checkpoint_lang=false;
+    public static boolean checkpoint_answer=false;
     
     
     
@@ -55,7 +58,9 @@ public class teacher_file_upload extends javax.swing.JFrame {
      */
     public teacher_file_upload() {
         initComponents();
-        
+        dic_file.setEnabled(false);
+        language_file.setEnabled(false);
+        save.setEnabled(false);
                 
     }
     
@@ -84,6 +89,36 @@ public class teacher_file_upload extends javax.swing.JFrame {
         }
     }
     
+    
+        public static void generate_answer_f(String d_file) throws IOException 
+    {
+        FileWriter out = null; 
+        out = new FileWriter(d_file);
+        try { 
+            out.write(""+answer_f);
+            if (out != null)
+            {
+                out.close();
+            }
+        }catch(Exception e)
+        {
+            System.out.println(e);
+        }
+        
+        
+       /* FileOutputStream out = null; 
+        try {
+            out = new FileOutputStream(d_file); 
+            int c;
+            out.write(""+answer_f);
+        }finally {
+            
+            if (out != null)
+            { 
+                out.close();
+            }
+        }*/
+    }
     //converted unstructured into structure
     
 
@@ -103,12 +138,21 @@ public class teacher_file_upload extends javax.swing.JFrame {
         language_file = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
         save = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        answer_tf = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
+        jLabel3 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
+        setPreferredSize(new java.awt.Dimension(1388, 905));
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
         jLabel1.setText("INFORMATION OF WORD FILE");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 90, 559, 50));
 
         back.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         back.setText("BACK");
@@ -117,6 +161,7 @@ public class teacher_file_upload extends javax.swing.JFrame {
                 backActionPerformed(evt);
             }
         });
+        getContentPane().add(back, new org.netbeans.lib.awtextra.AbsoluteConstraints(1070, 20, 140, 40));
 
         logout.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         logout.setText("LOG OUT");
@@ -125,6 +170,7 @@ public class teacher_file_upload extends javax.swing.JFrame {
                 logoutActionPerformed(evt);
             }
         });
+        getContentPane().add(logout, new org.netbeans.lib.awtextra.AbsoluteConstraints(1240, 20, 124, 40));
 
         dic_file.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         dic_file.setText("UPLOAD DICTIONARY FILE OR .dic");
@@ -133,6 +179,7 @@ public class teacher_file_upload extends javax.swing.JFrame {
                 dic_fileActionPerformed(evt);
             }
         });
+        getContentPane().add(dic_file, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 440, 400, -1));
 
         language_file.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         language_file.setText("UPLOAD LANGUAGE FILE OR .lm");
@@ -141,9 +188,11 @@ public class teacher_file_upload extends javax.swing.JFrame {
                 language_fileActionPerformed(evt);
             }
         });
+        getContentPane().add(language_file, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 480, 400, -1));
 
         jLabel8.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jLabel8.setText("UPLOAD AFTER MANUAL WORK");
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 440, 288, 31));
 
         save.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         save.setText("SAVE");
@@ -152,55 +201,42 @@ public class teacher_file_upload extends javax.swing.JFrame {
                 saveActionPerformed(evt);
             }
         });
+        getContentPane().add(save, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 540, 210, 60));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(back, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(logout, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29))
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(292, 292, 292)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 559, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(178, 178, 178)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(69, 69, 69)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(dic_file)
-                                    .addComponent(language_file, javax.swing.GroupLayout.PREFERRED_SIZE, 315, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(272, 272, 272)
-                                .addComponent(save, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(240, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(logout, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(back, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(35, 35, 35)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(70, 70, 70)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(dic_file)
-                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(language_file)
-                .addGap(68, 68, 68)
-                .addComponent(save, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(240, Short.MAX_VALUE))
-        );
+        jLabel2.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        jLabel2.setText("DOWNLOAD ANSWER TEXT FILE");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 230, 305, 36));
+
+        answer_tf.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        answer_tf.setText("DOWNLOAD");
+        answer_tf.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                answer_tfActionPerformed(evt);
+            }
+        });
+        getContentPane().add(answer_tf, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 230, 400, 36));
+
+        jTextArea1.setEditable(false);
+        jTextArea1.setColumns(20);
+        jTextArea1.setRows(5);
+        jTextArea1.setText("INSTRUCTION:\n1. DOWNLOAD ABOVE TEXT FILE AND UPLOAD TO THE GIVEN URL.\n2. CLICK ON GENERATE BUTTON AND SAVE TWO FILES HAVING (.dic) & (.lm) EXTENSION.\n3. FOE SAVING FILE YOU JUST NEED TO LEFT CLICK ON THAT FILE AND SELECT SAVE AS.\n4. THEN UPLOAD THAT IN THE BELOW LINK.");
+        jScrollPane1.setViewportView(jTextArea1);
+
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 320, 760, -1));
+
+        jLabel3.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        jLabel3.setText("URL");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 270, 280, 32));
+
+        jTextField1.setEditable(false);
+        jTextField1.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        jTextField1.setText("http://www.speech.cs.cmu.edu/tools/lmtool-new.html ");
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 270, 403, 32));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -208,7 +244,7 @@ public class teacher_file_upload extends javax.swing.JFrame {
     private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
         // TODO add your handling code here:
         setVisible(false);
-        //new Home_page().setVisible(true);       //directing to the Login_form
+        new Teacher_Home_Page().setVisible(true);       //directing to the Login_form
     }//GEN-LAST:event_backActionPerformed
 
     private void logoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutActionPerformed
@@ -258,6 +294,11 @@ public class teacher_file_upload extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(null,"<html><h1><span style=\"color:red font:-size:10px\">ONLY DICTIONARY or .dic FILE SUPPORTED<span></h1><html>","ALERT",JOptionPane.INFORMATION_MESSAGE);
 
                 }
+                if(checkpoint_dic)
+                {
+                    JOptionPane.showMessageDialog(null,"<html><h1><span style=\"color:red font:-size:10px\">DICTIONARY or .dic FILE UPLOADED SUCCESSFULLY<span></h1><html>","ALERT",JOptionPane.INFORMATION_MESSAGE);
+
+                }
     }//GEN-LAST:event_dic_fileActionPerformed
 
     private void language_fileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_language_fileActionPerformed
@@ -295,6 +336,11 @@ public class teacher_file_upload extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(null,"<html><h1><span style=\"color:red font:-size:10px\">ONLY LANGUAUE or .lm FILE SUPPORTED<span></h1><html>","ALERT",JOptionPane.INFORMATION_MESSAGE);
 
                 }
+                if(checkpoint_lang)
+                {
+                    JOptionPane.showMessageDialog(null,"<html><h1><span style=\"color:red font:-size:10px\">LANGUAUE or .lm FILE UPLOADED SUCCESSFULLY<span></h1><html>","ALERT",JOptionPane.INFORMATION_MESSAGE);
+
+                }
     }//GEN-LAST:event_language_fileActionPerformed
 
     private void saveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveActionPerformed
@@ -313,11 +359,11 @@ public class teacher_file_upload extends javax.swing.JFrame {
             JOptionPane.showConfirmDialog(null,"<html><h1><span style=\"font:-size:10px\"><B>FILE UPLOADED SUCCESSFULLY<br>USERNAME:</B>","AUTHETICATION",JOptionPane.OK_OPTION);
             
             setVisible(false);
-                new admin_home().setVisible(true);
+                new Teacher_Home_Page().setVisible(true);
             /*(i==0)
             {
                 setVisible(false);
-                new Login_form_teacher().setVisible(true);    //directing to the Login_form
+                new Teacher_Login_Form().setVisible(true);    //directing to the Login_form
             }
             else
             {
@@ -326,6 +372,46 @@ public class teacher_file_upload extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null,"<html><h1><span style=\"color:red font:-size:10px\">FILE UPLOADED SUCCESSFULLY<span></h1><html>","ALERT",JOptionPane.ERROR_MESSAGE);*/
         }
     }//GEN-LAST:event_saveActionPerformed
+
+    private void answer_tfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_answer_tfActionPerformed
+        // TODO add your handling code here:
+        try{
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/project2","root","");
+            Statement st = conn.createStatement();
+            ResultSet rs=st.executeQuery("select * from question_set where teacher_code='"+t_code+"'");
+            while(rs.next())
+            {
+                //System.out.println("2");
+                answer_f = answer_f + "\n" +rs.getString(3); 
+                //String arr[] = {rs.getString(1),rs.getString(2),rs.getString(3)};
+            }
+            answer_f = answer_f + "\n" +"repeat";
+            
+            
+            generate_answer_f("C:\\Users\\Admin\\Documents\\test\\User_answer_file\\"+t_code+".txt");
+            checkpoint_answer=true;
+        }catch(Exception e)
+        {
+                System.out.print(e);
+        }
+        if(checkpoint_lang)
+        {
+              JOptionPane.showMessageDialog(null,"<html><h1><span style=\"color:red font:-size:10px\">ANSWER FILE SAVED SUCCESSFULLY,<BR>C:\\Users\\Admin\\Documents\\test\\User_answer_file\\"+t_code+".txt<span></h1><html>","ALERT",JOptionPane.INFORMATION_MESSAGE);
+
+         }
+        
+        System.out.println("answer=\n"+answer_f);
+        
+        
+        dic_file.setEnabled(true);
+        language_file.setEnabled(true);
+        save.setEnabled(true);
+    }//GEN-LAST:event_answer_tfActionPerformed
+
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -370,10 +456,16 @@ public class teacher_file_upload extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton answer_tf;
     private javax.swing.JButton back;
     private javax.swing.JButton dic_file;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JButton language_file;
     private javax.swing.JButton logout;
     private javax.swing.JButton save;
