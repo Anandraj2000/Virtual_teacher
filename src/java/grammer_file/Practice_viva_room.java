@@ -41,10 +41,10 @@ import javax.swing.JOptionPane;
 
 public class Practice_viva_room extends javax.swing.JFrame {
     public static String flag="1";
-    public static Configuration config;
-    public static LiveSpeechRecognizer rec;
+    public static Configuration config1;
+    public static LiveSpeechRecognizer rec1;
     public static String q1="what is your password?";
-    public static Voice voice;
+    public static Voice voice1;
     //public static Dictionary question_set = new Hashtable();
     //public static Dictionary answer_set = new Hashtable();
     public static String temp_key;
@@ -65,9 +65,9 @@ public class Practice_viva_room extends javax.swing.JFrame {
         initComponents();
         
         VoiceManager vm = VoiceManager.getInstance();
-        voice = vm.getVoice("kevin16");
-        voice.allocate();
-        voice.setRate(130);
+        voice1 = vm.getVoice("kevin16");
+        voice1.allocate();
+        voice1.setRate(140);
         start_viva.setEnabled(false);
         //question_set.put("q1","what is the command?");
         //question_set.put("q2","java is object oriented langauge?");
@@ -93,19 +93,19 @@ public class Practice_viva_room extends javax.swing.JFrame {
 
     public static void speech()
     {
-        config = new Configuration();
-        config.setAcousticModelPath("resource:/edu/cmu/sphinx/models/en-us/en-us");
+        config1 = new Configuration();
+        config1.setAcousticModelPath("resource:/edu/cmu/sphinx/models/en-us/en-us");
         //config.setDictionaryPath(file_upload.dictionary_file_path);
-        config.setDictionaryPath("src\\java\\listener_file\\dict.dic");
+        config1.setDictionaryPath("src\\java\\listener_file\\dict.dic");
         //config.setDictionaryPath("D:\\test\\test1\\dict.dic");
         //config.setLanguageModelPath(file_upload.language_file_path);
-        config.setLanguageModelPath("src\\java\\listener_file\\lang.lm");
+        config1.setLanguageModelPath("src\\java\\listener_file\\lang.lm");
         //config.setLanguageModelPath("D:\\test\\test1\\lang.lm");
         System.out.println("hii");
         
         try{
-            rec = new LiveSpeechRecognizer(config);
-            rec.startRecognition(true);
+            rec1 = new LiveSpeechRecognizer(config1);
+            rec1.startRecognition(true);
         }catch(Exception e)
         {
             System.out.println(e);
@@ -123,7 +123,7 @@ public class Practice_viva_room extends javax.swing.JFrame {
             }
             else
             {
-                voice.speak("it is an last question");
+                voice1.speak("it is an last question");
             }
             
             
@@ -138,7 +138,7 @@ public class Practice_viva_room extends javax.swing.JFrame {
             }
             else
             {
-                voice.speak("it is an First question");
+                voice1.speak("it is an First question");
             }
             
             
@@ -148,7 +148,7 @@ public class Practice_viva_room extends javax.swing.JFrame {
         {
             //display.setText("\n"+key[count]+": "+question_set.get(key[count]));
             //display.setText(display.getText()+"\n"+"Answer"+": "+answer_set.get(key[count]));
-            voice.speak("question:    "+(String)question_set.get(key[count]));
+            voice1.speak("question:    "+(String)question_set.get(key[count]));
             //voice.speak("answer:    "+(String)answer_set.get(key[count]));
             
             /*for (Enumeration k = answer_set.keys(); k.hasMoreElements();)
@@ -180,15 +180,15 @@ public class Practice_viva_room extends javax.swing.JFrame {
             //LiveSpeechRecognizer rec = new LiveSpeechRecognizer(config);
             
             
-            SpeechResult speechResult =null;
+            SpeechResult speechResult1 =null;
             long t= System.currentTimeMillis();
             long end = t+15000;
    
-            while((System.currentTimeMillis() < end) && (speechResult=rec.getResult())!=null)
+            while( (speechResult1=rec1.getResult())!=null && (System.currentTimeMillis() < end))
             //for(int i=0;i<100;i++)
             {
-                String result =speechResult.getHypothesis();
-                if(result.equalsIgnoreCase("ONE"))
+                String result1 =speechResult1.getHypothesis();
+                /*if(result.equalsIgnoreCase("ONE"))
                     result="1";
                 else if(result.equalsIgnoreCase("TWO"))
                     result="2";
@@ -220,25 +220,38 @@ public class Practice_viva_room extends javax.swing.JFrame {
                     user_sec.put(key[count],(end-System.currentTimeMillis()));
                     score++;
                     break;
-                }
-               /* else if(result.equalsIgnoreCase("next"))
-                {
-                    voice.speak("YOUR sayed:  "+result);
-                    next();
-                    t=System.currentTimeMillis();
-                    end = t+5000;
-                }
-                else if(result.equalsIgnoreCase("previous"))
-                {
-                    voice.speak("YOUR sayed:  "+result);
-                    previous();
-                    t=System.currentTimeMillis();
-                    end = t+5000;
                 }*/
-                
-                //sleep(1000);    
+                if(result1.equalsIgnoreCase("repeat"))
+                {
+                    voice1.speak("YOUR sayed:  "+result1);
+                    repeat();
+                    t=System.currentTimeMillis();
+                    end = t+15000;
+                    
+                    //rec.startRecognition(false);
+                    //break;
+                }
+                else
+                {
+                    if(result1.equalsIgnoreCase("ONE"))
+                        result1="1";
+                    else if(result1.equalsIgnoreCase("TWO"))
+                        result1="2";
+                    else if(result1.equalsIgnoreCase("THREE"))
+                        result1="3";
+                    else if(result1.equalsIgnoreCase("FOUR"))
+                        result1="4";
+                    
+                    if(result1.equalsIgnoreCase((String)answer_set.get(key[count])))
+                    {
+                        voice1.speak("YOUR sayed:  "+result1);
+                        user_answer.put(key[count],result1);
+                        user_sec.put(key[count],(end-System.currentTimeMillis()));
+                        score++;
+                        break;
+                    }  
+                }
             }
-            
         }catch(Exception e)
         {
             System.out.println(e);
@@ -344,7 +357,7 @@ public class Practice_viva_room extends javax.swing.JFrame {
         System.out.println(count +"l="+(key.length));
         //display.setText("\n"+key[count]+": "+question_set.get(key[count]));
         //display.setText(display.getText()+"\n"+"Answer"+": "+answer_set.get(key[count]));
-        voice.speak("question:    "+(String)question_set.get(key[count]));
+        voice1.speak("question:    "+(String)question_set.get(key[count]));
         //voice.speak("answer:    "+(String)answer_set.get(key[count]));
         
         speech_button();

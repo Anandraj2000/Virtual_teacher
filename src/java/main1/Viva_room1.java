@@ -38,7 +38,7 @@ import java.util.Hashtable;
 public class Viva_room1 extends javax.swing.JFrame {
     //public static String flag="1";
     public static Configuration config;
-    public static LiveSpeechRecognizer rec;
+    public static LiveSpeechRecognizer rec2;
     //public static String q1="what is your password?";
     public static Voice voice;
     //public static Dictionary question_set = new Hashtable();
@@ -107,8 +107,8 @@ public class Viva_room1 extends javax.swing.JFrame {
         System.out.println("hii");
         
         try{
-            rec = new LiveSpeechRecognizer(config);
-            rec.startRecognition(true);
+            rec2 = new LiveSpeechRecognizer(config);
+            rec2.startRecognition(true);
         }catch(Exception e)
         {
             System.out.println(e);
@@ -130,14 +130,14 @@ public class Viva_room1 extends javax.swing.JFrame {
             //LiveSpeechRecognizer rec = new LiveSpeechRecognizer(config);
             
             
-            SpeechResult speechResult =null;
+            SpeechResult speechResult2 =null;
             long t= System.currentTimeMillis();
-            long end = t+20000;
+            long end = t+15000;
    
-            while((System.currentTimeMillis() < end) && (speechResult=rec.getResult())!=null)
+            while( (speechResult2=rec2.getResult())!=null && (System.currentTimeMillis() < end))
             //for(int i=0;i<100;i++)
             {
-                String result =speechResult.getHypothesis();
+                String result =speechResult2.getHypothesis();
                 //if(result.equalsIgnoreCase("open"))
                // System.out.println("ANswer222="+answer_set.get(key[count1]));
                 if(result.equalsIgnoreCase((String)answer_set.get(key[count1])))

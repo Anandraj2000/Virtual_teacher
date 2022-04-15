@@ -46,6 +46,7 @@ public class Reader extends javax.swing.JFrame {
     //public static Dictionary answer_set = new Hashtable();
     public static String temp_key;
     public static int count=0; 
+    public static SpeechResult speechResult =null;
     //public static String key[]={"q1","q2"};
     
     
@@ -62,6 +63,7 @@ public class Reader extends javax.swing.JFrame {
         voice = vm.getVoice("kevin16");
         voice.allocate();
         voice.setRate(140);
+        
         feedback.setEnabled(false);
          start_reader.setEnabled(false);
         //question_set.put("q1","what is the command?");
@@ -175,11 +177,11 @@ public class Reader extends javax.swing.JFrame {
             //LiveSpeechRecognizer rec = new LiveSpeechRecognizer(config);
             
             
-            SpeechResult speechResult =null;
+            
             long t= System.currentTimeMillis();
             long end = t+15000;
    
-            while((System.currentTimeMillis() < end) && (speechResult=rec.getResult())!=null)
+            while( (speechResult=rec.getResult())!=null && (System.currentTimeMillis() < end))
             //for(int i=0;i<100;i++)
             {
                 String result =speechResult.getHypothesis();
@@ -212,7 +214,7 @@ public class Reader extends javax.swing.JFrame {
                     voice.speak("YOUR sayed:  "+result);
                     previous();
                     t=System.currentTimeMillis();
-                    end = t+10000;
+                    end = t+15000;
                 }
                 
                 //sleep(1000);    
@@ -361,6 +363,8 @@ public class Reader extends javax.swing.JFrame {
     rec.stopRecognition();
     System.out.println(count +"l="+(key.length-1));
     feedback.setEnabled(true);
+    //setVisible(false);
+    //new File_upload3().setVisible(true);
     /* if(!("".equals(start_point.getText())))
      {
           q = start_point.getText();

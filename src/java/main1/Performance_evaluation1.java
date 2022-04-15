@@ -105,6 +105,7 @@ public class Performance_evaluation1 extends javax.swing.JFrame {
     public Performance_evaluation1() {
         initComponents();
         getResult();
+        back_to_home_page.setEnabled(false);
         
         
     }
