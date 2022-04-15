@@ -248,11 +248,12 @@ public class Teacher_Home_Page extends javax.swing.JFrame {
             Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/project2","root","");
             Statement st = conn.createStatement();
             ResultSet rs=st.executeQuery("select * from "+t_code);
+            DefaultTableModel tb = (DefaultTableModel)student_record.getModel();
+            tb.setRowCount(0);
             while(rs.next())
             {
                 System.out.println("2");
-                String arr[] = {rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6)};
-                DefaultTableModel tb = (DefaultTableModel)student_record.getModel();
+                String arr[] = {rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6)};    
                 tb.addRow(arr);
             }
         }catch(Exception e)
@@ -267,7 +268,7 @@ public class Teacher_Home_Page extends javax.swing.JFrame {
 
     private void file_uploadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_file_uploadActionPerformed
         // TODO add your handling code here:
-        setVisible(false);
+        //setVisible(false);
         new teacher_file_upload().setVisible(true);
     }//GEN-LAST:event_file_uploadActionPerformed
 
@@ -311,13 +312,15 @@ public class Teacher_Home_Page extends javax.swing.JFrame {
             Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/project2","root","");
             Statement st = conn.createStatement();
             ResultSet rs=st.executeQuery("select * from question_set where teacher_code='"+t_code+"'");
+            DefaultTableModel tb = (DefaultTableModel)question_record.getModel();
+            tb.setRowCount(0);
             while(rs.next())
             {
                 System.out.println("2");
-                String arr[] = {rs.getString(1),rs.getString(2),rs.getString(3)};
-                DefaultTableModel tb = (DefaultTableModel)question_record.getModel();
+                String arr[] = {rs.getString(1),rs.getString(2),rs.getString(3)};                
                 tb.addRow(arr);
             }
+            
         }catch(Exception e)
         {
                 System.out.print(e);

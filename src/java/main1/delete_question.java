@@ -25,6 +25,7 @@ public class delete_question extends javax.swing.JFrame {
      */
     public delete_question() {
         initComponents();
+        delete_question.setEnabled(false);
     }
 
     /**
@@ -158,7 +159,7 @@ public class delete_question extends javax.swing.JFrame {
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/project2","root","");
             Statement st = conn.createStatement();
-            PreparedStatement ps=conn.prepareStatement("delete from question_set where id="+qn.getText());
+            PreparedStatement ps=conn.prepareStatement("delete from question_set where qid="+qn.getText());
             //ps.setInt(1,Integer.parseInt(qn.getText()));
             //ps.setString(2,question.getText());
             //ps.setString(3,answer.getText());
@@ -190,12 +191,13 @@ public class delete_question extends javax.swing.JFrame {
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/project2","root","");
             Statement st = conn.createStatement();
-            ResultSet rs=st.executeQuery("select * from question_set where id="+Integer.parseInt(qn.getText()));
+            ResultSet rs=st.executeQuery("select * from question_set where qid="+Integer.parseInt(qn.getText()));
             while(rs.next())
             {
                question.setText(rs.getString(2));
                answer.setText(rs.getString(3));
                qn.setEditable(false);
+               delete_question.setEnabled(true);
             }
             question_id_exist=1;
             }catch(Exception e){

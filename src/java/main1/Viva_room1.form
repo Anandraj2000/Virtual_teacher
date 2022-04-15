@@ -157,7 +157,7 @@
             <Property name="editable" type="boolean" value="false"/>
             <Property name="columns" type="int" value="20"/>
             <Property name="rows" type="int" value="5"/>
-            <Property name="text" type="java.lang.String" value="-&gt; AFTER STARTING VIVA READER READ THE QUESTION SO LISTEN&#xa;CAREFULLY.&#xa;-&gt; IF YOU WANT TO REPEAT THE QUESTION JUST SAY REPEAT AFTER&#xa;READER STOP OR COMPLETE THE QUESITON.&#xa;-&gt; ANSWER THE QUESTION ONLY AFER READER STOP OR COMPLETE THE&#xa;QUESITON,IT GIVES YOU 10sec TO ANSWER.IF YOU DON&apos;T KNOW THE&#xa;ANSWER THEN WAIT FOR&#xa;FOR READER TO READ NEXT QUESTION. &#xa;&#xa;"/>
+            <Property name="text" type="java.lang.String" value="-&gt; AFTER STARTING VIVA READER WILL READ THE QUESTION SO LISTEN&#xa;   CAREFULLY.&#xa;-&gt; IF YOU WANT TO REPEAT THE QUESTION JUST SAY REPEAT AFTER&#xa;   READER STOP OR COMPLETE THE QUESITON.&#xa;-&gt; ANSWER THE QUESTION ONLY AFER READER STOP OR COMPLETE THE&#xa;   QUESITON,IT GIVES YOU 10sec TO ANSWER.IF YOU DON&apos;T KNOW THE&#xa;   ANSWER THEN WAIT FOR FOR READER TO READ NEXT QUESTION. &#xa;&#xa;"/>
           </Properties>
         </Component>
       </SubComponents>

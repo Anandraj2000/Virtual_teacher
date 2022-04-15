@@ -14,6 +14,10 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import java.sql.*;
 import grammer_file.Reading_Mode1;
+import java.awt.Desktop;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.net.URL;
 import javax.swing.table.DefaultTableModel;
 import static main1.Teacher_Login_Form.t_code;
 /*
@@ -61,6 +65,7 @@ public class teacher_file_upload extends javax.swing.JFrame {
         dic_file.setEnabled(false);
         language_file.setEnabled(false);
         save.setEnabled(false);
+        logout.setEnabled(false);
                 
     }
     
@@ -143,7 +148,7 @@ public class teacher_file_upload extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
         jLabel3 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        url = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -219,24 +224,23 @@ public class teacher_file_upload extends javax.swing.JFrame {
         jTextArea1.setEditable(false);
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
-        jTextArea1.setText("INSTRUCTION:\n1. DOWNLOAD ABOVE TEXT FILE AND UPLOAD TO THE GIVEN URL.\n2. CLICK ON GENERATE BUTTON AND SAVE TWO FILES HAVING (.dic) & (.lm) EXTENSION.\n3. FOE SAVING FILE YOU JUST NEED TO LEFT CLICK ON THAT FILE AND SELECT SAVE AS.\n4. THEN UPLOAD THAT IN THE BELOW LINK.");
+        jTextArea1.setText("INSTRUCTION:\n1. DOWNLOAD ABOVE TEXT FILE AND UPLOAD TO THE GIVEN URL(CLICK ON \"CLICK ME\" \n   BUTTON YOU WILL DIRECTED TO THE NEW PAGE).\n2. CLICK ON GENERATE BUTTON AND SAVE TWO FILES HAVING (.dic) & (.lm) EXTENSION.\n3. FOE SAVING FILE YOU JUST NEED TO LEFT CLICK ON THAT FILE AND SELECT SAVE AS.\n4. THEN UPLOAD THAT IN THE BELOW LINK.");
         jScrollPane1.setViewportView(jTextArea1);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 320, 760, -1));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 310, 760, 120));
 
         jLabel3.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jLabel3.setText("URL");
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 270, 280, 32));
 
-        jTextField1.setEditable(false);
-        jTextField1.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        jTextField1.setText("http://www.speech.cs.cmu.edu/tools/lmtool-new.html ");
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        url.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        url.setText("CLICK ME");
+        url.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                urlActionPerformed(evt);
             }
         });
-        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 270, 403, 32));
+        getContentPane().add(url, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 270, 400, 30));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -244,7 +248,7 @@ public class teacher_file_upload extends javax.swing.JFrame {
     private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
         // TODO add your handling code here:
         setVisible(false);
-        new Teacher_Home_Page().setVisible(true);       //directing to the Login_form
+        //new Teacher_Home_Page().setVisible(true);       //directing to the Login_form
     }//GEN-LAST:event_backActionPerformed
 
     private void logoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutActionPerformed
@@ -356,7 +360,7 @@ public class teacher_file_upload extends javax.swing.JFrame {
         else 
         {
            // int i =
-            JOptionPane.showConfirmDialog(null,"<html><h1><span style=\"font:-size:10px\"><B>FILE UPLOADED SUCCESSFULLY<br>USERNAME:</B>","AUTHETICATION",JOptionPane.OK_OPTION);
+            JOptionPane.showConfirmDialog(null,"<html><h1><span style=\"font:-size:10px\"><B>FILE UPLOADED SUCCESSFULLY<br></B>","AUTHETICATION",JOptionPane.OK_OPTION);
             
             setVisible(false);
                 new Teacher_Home_Page().setVisible(true);
@@ -409,9 +413,17 @@ public class teacher_file_upload extends javax.swing.JFrame {
         save.setEnabled(true);
     }//GEN-LAST:event_answer_tfActionPerformed
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void urlActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_urlActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+        Desktop browser = Desktop.getDesktop();
+        try {
+            browser.browse(new URI("http://www.speech.cs.cmu.edu/tools/lmtool-new.html"));
+        } catch (Exception ex) {
+            System.out.println(ex);
+        }
+        
+        
+    }//GEN-LAST:event_urlActionPerformed
 
     /**
      * @param args the command line arguments
@@ -465,9 +477,9 @@ public class teacher_file_upload extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JButton language_file;
     private javax.swing.JButton logout;
     private javax.swing.JButton save;
+    private javax.swing.JButton url;
     // End of variables declaration//GEN-END:variables
 }

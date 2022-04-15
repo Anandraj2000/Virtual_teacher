@@ -70,7 +70,7 @@ public class Viva_room1 extends javax.swing.JFrame {
         VoiceManager vm = VoiceManager.getInstance();
         voice = vm.getVoice("kevin16");
         voice.allocate();
-        voice.setRate(140);
+        voice.setRate(130);
         back.setEnabled(true);
         //question_set.put("q1","what is the command?");
         //question_set.put("q2","java is object oriented langauge?");
@@ -132,7 +132,7 @@ public class Viva_room1 extends javax.swing.JFrame {
             
             SpeechResult speechResult =null;
             long t= System.currentTimeMillis();
-            long end = t+10000;
+            long end = t+20000;
    
             while((System.currentTimeMillis() < end) && (speechResult=rec.getResult())!=null)
             //for(int i=0;i<100;i++)
@@ -158,7 +158,7 @@ public class Viva_room1 extends javax.swing.JFrame {
                     voice.speak("YOUR sayed:  "+result);
                     repeat();
                     t=System.currentTimeMillis();
-                    end = t+10000;
+                    end = t+15000;
                 }
                 //sleep(1000);    
             }
@@ -226,7 +226,7 @@ public class Viva_room1 extends javax.swing.JFrame {
         jTextArea1.setEditable(false);
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
-        jTextArea1.setText("-> AFTER STARTING VIVA READER READ THE QUESTION SO LISTEN\nCAREFULLY.\n-> IF YOU WANT TO REPEAT THE QUESTION JUST SAY REPEAT AFTER\nREADER STOP OR COMPLETE THE QUESITON.\n-> ANSWER THE QUESTION ONLY AFER READER STOP OR COMPLETE THE\nQUESITON,IT GIVES YOU 10sec TO ANSWER.IF YOU DON'T KNOW THE\nANSWER THEN WAIT FOR\nFOR READER TO READ NEXT QUESTION. \n\n");
+        jTextArea1.setText("-> AFTER STARTING VIVA READER WILL READ THE QUESTION SO LISTEN\n   CAREFULLY.\n-> IF YOU WANT TO REPEAT THE QUESTION JUST SAY REPEAT AFTER\n   READER STOP OR COMPLETE THE QUESITON.\n-> ANSWER THE QUESTION ONLY AFER READER STOP OR COMPLETE THE\n   QUESITON,IT GIVES YOU 10sec TO ANSWER.IF YOU DON'T KNOW THE\n   ANSWER THEN WAIT FOR FOR READER TO READ NEXT QUESTION. \n\n");
         jScrollPane1.setViewportView(jTextArea1);
 
         instruction.setFont(new java.awt.Font("Times New Roman", 1, 11)); // NOI18N

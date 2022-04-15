@@ -182,12 +182,20 @@ public class Practice_viva_room extends javax.swing.JFrame {
             
             SpeechResult speechResult =null;
             long t= System.currentTimeMillis();
-            long end = t+10000;
+            long end = t+15000;
    
             while((System.currentTimeMillis() < end) && (speechResult=rec.getResult())!=null)
             //for(int i=0;i<100;i++)
             {
                 String result =speechResult.getHypothesis();
+                if(result.equalsIgnoreCase("ONE"))
+                    result="1";
+                else if(result.equalsIgnoreCase("TWO"))
+                    result="2";
+                else if(result.equalsIgnoreCase("THREE"))
+                    result="3";
+                else if(result.equalsIgnoreCase("FOUR"))
+                    result="4";
                 //if(result.equalsIgnoreCase("open"))
                 //System.out.println("recorded");
                 if(result.equalsIgnoreCase("repeat"))

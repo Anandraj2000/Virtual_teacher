@@ -24,6 +24,7 @@ public class add_question extends javax.swing.JFrame {
      */
     public add_question() {
         initComponents();
+        qn.setEnabled(false);
     }
 
     /**
@@ -61,6 +62,7 @@ public class add_question extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jLabel4.setText("ANSWER:");
 
+        qn.setEditable(false);
         qn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 qnActionPerformed(evt);
@@ -144,12 +146,12 @@ public class add_question extends javax.swing.JFrame {
     private void save_questionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_save_questionActionPerformed
         // TODO add your handling code here:
         int f=1;
-        if(qn.getText().isEmpty())
+        /*if(qn.getText().isEmpty())
         {
             f=1;
             JOptionPane.showMessageDialog(null,"<html><h1><span style=\"color:red font:-size:10px\">PLEASE ENTER THE QUESTION<span></h1><html>","ALERT",JOptionPane.ERROR_MESSAGE);
         }
-        else if(question.getText().isEmpty())
+        else */if(question.getText().isEmpty())
         {
             f=1;
             JOptionPane.showMessageDialog(null,"<html><h1><span style=\"color:red font:-size:10px\">PLEASE ENTER THE QUESTION<span></h1><html>","ALERT",JOptionPane.ERROR_MESSAGE);
@@ -165,11 +167,11 @@ public class add_question extends javax.swing.JFrame {
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/project2","root","");
             Statement st = conn.createStatement();
-            PreparedStatement ps=conn.prepareStatement("insert into question_set (id,question,answer,teacher_code)values(?,?,?,?)");
-            ps.setInt(1,Integer.parseInt(qn.getText()));
-            ps.setString(2,question.getText());
-            ps.setString(3,answer.getText());
-            ps.setString(4,t_code);
+            PreparedStatement ps=conn.prepareStatement("insert into question_set (question,answer,teacher_code)values(?,?,?)");
+            //ps.setInt(1,Integer.parseInt(qn.getText()));
+            ps.setString(1,question.getText());
+            ps.setString(2,answer.getText());
+            ps.setString(3,t_code);
             ps.executeUpdate();
             JOptionPane.showMessageDialog(null,"<html><h1><span style=\"font:-size:10px\"><B>Question Added Successful<br></B>PLEASE UPLOAD DICTIONARY(.dic) & LANGUAGE(.lm) FILE<span></h1><html>","ALERT",JOptionPane.INFORMATION_MESSAGE);
             Teacher_Home_Page.file_upload.setEnabled(true);

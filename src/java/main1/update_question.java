@@ -25,6 +25,7 @@ public class update_question extends javax.swing.JFrame {
      */
     public update_question() {
         initComponents();
+        save_update.setEnabled(false);
     }
 
     /**
@@ -158,7 +159,7 @@ public class update_question extends javax.swing.JFrame {
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/project2","root","");
             Statement st = conn.createStatement();
-            PreparedStatement ps=conn.prepareStatement("update question_set set question=?,answer=? where id=?");
+            PreparedStatement ps=conn.prepareStatement("update question_set set question=?,answer=? where qid=?");
             
             ps.setString(1,question.getText());
             ps.setString(2,answer.getText());
@@ -192,12 +193,13 @@ public class update_question extends javax.swing.JFrame {
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/project2","root","");
             Statement st = conn.createStatement();
-            ResultSet rs=st.executeQuery("select * from question_set where id="+Integer.parseInt(qn.getText()));
+            ResultSet rs=st.executeQuery("select * from question_set where qid="+Integer.parseInt(qn.getText()));
             while(rs.next())
             {
                question.setText(rs.getString(2));
                answer.setText(rs.getString(3));
                qn.setEditable(false);
+               save_update.setEnabled(true);
             }
             update_checkpoint=1;
             }catch(Exception e){

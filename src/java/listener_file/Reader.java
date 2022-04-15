@@ -57,7 +57,7 @@ public class Reader extends javax.swing.JFrame {
     public Reader() {
         speech();
         initComponents();
-        
+        viva_mode.setEnabled(false);
         VoiceManager vm = VoiceManager.getInstance();
         voice = vm.getVoice("kevin16");
         voice.allocate();
@@ -177,7 +177,7 @@ public class Reader extends javax.swing.JFrame {
             
             SpeechResult speechResult =null;
             long t= System.currentTimeMillis();
-            long end = t+10000;
+            long end = t+15000;
    
             while((System.currentTimeMillis() < end) && (speechResult=rec.getResult())!=null)
             //for(int i=0;i<100;i++)
@@ -195,7 +195,7 @@ public class Reader extends javax.swing.JFrame {
                     voice.speak("YOUR sayed:  "+result);
                     content();
                     t=System.currentTimeMillis();
-                    end = t+10000;
+                    end = t+15000;
                     
                     //rec.startRecognition(false);
                     //break;
@@ -205,7 +205,7 @@ public class Reader extends javax.swing.JFrame {
                     voice.speak("YOUR sayed:  "+result);
                     next();
                     t=System.currentTimeMillis();
-                    end = t+10000;
+                    end = t+15000;
                 }
                 else if(result.equalsIgnoreCase("previous"))
                 {

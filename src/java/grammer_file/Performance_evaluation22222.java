@@ -45,6 +45,7 @@ import javax.swing.JOptionPane;
 public class Performance_evaluation22222 extends javax.swing.JFrame {
     public static String result_content = "";
     public static int score1 = 0;
+    
     //public static Dictionary answer_set1 = new Hashtable();
     //public static Dictionary question_set1 = new Hashtable();
     //public static int noq=noq;
@@ -103,6 +104,7 @@ public class Performance_evaluation22222 extends javax.swing.JFrame {
     public Performance_evaluation22222() {
         initComponents();
         getResult();
+        back_to_home_page.setEnabled(false);
         
         
     }
@@ -239,8 +241,10 @@ public class Performance_evaluation22222 extends javax.swing.JFrame {
         if(j==0)
         {
             analysis.setText("");
+            result_content="";
+            score=0;
           setVisible(false);
-          //new Home_page().setVisible(true);  //
+          new Main_page().setVisible(true);  //
         }
     }//GEN-LAST:event_back_to_home_pageActionPerformed
 

@@ -411,7 +411,7 @@ public class student_details extends javax.swing.JFrame {
     private void save_detailsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_save_detailsActionPerformed
         // TODO add your handling code here:
         int f=0;
-        /*if(f_name.getText().isEmpty())
+        if(f_name.getText().isEmpty())
         {
            JOptionPane.showMessageDialog(null,"<html><h1><span style=\"color:red font:-size:10px\">PLEASE ENTER THE FIRST NAME<span></h1><html>","ALERT",JOptionPane.ERROR_MESSAGE); 
         }
@@ -435,7 +435,7 @@ public class student_details extends javax.swing.JFrame {
         {
             JOptionPane.showMessageDialog(null,"<html><h1><span style=\"color:red font:-size:10px\">PLEASE SELECT GENDER<span></h1><html>","ALERT",JOptionPane.ERROR_MESSAGE);
         }
-        else */if(u_teacher_code.getText().isEmpty())
+        else if(u_teacher_code.getText().isEmpty())
         {
             JOptionPane.showMessageDialog(null,"<html><h1><span style=\"color:red font:-size:10px\">PLEASE ENTER THE TEACHER CODE PROVIDED BY TOUR TEACHER<span></h1><html>","ALERT",JOptionPane.ERROR_MESSAGE);
         }

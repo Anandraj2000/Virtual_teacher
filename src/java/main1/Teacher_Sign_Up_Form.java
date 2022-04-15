@@ -215,8 +215,9 @@ public class Teacher_Sign_Up_Form extends javax.swing.JFrame {
                 {
                     if(f==0)
                     {
+                        System.out.println("fine");
                         Statement st1 = conn.createStatement();
-                        st1.execute("create table "+teacher_code.getText()+" (id int PRIMARY KEY AUTO_INCREMENT,name varchar(40),gender varchar(10),email varchar(50) UNIQUE,seat_no varchar(30),class varchar(50),total_question varchar(10),score varchar(10)),date varchar(100)");
+                        st1.execute("create table "+teacher_code.getText()+" (id int(10) PRIMARY KEY AUTO_INCREMENT,name varchar(40),gender varchar(10),email varchar(50) UNIQUE,seat_no varchar(30),class varchar(50),total_question varchar(10),score varchar(10),date varchar(100))");
                         System.out.println("done");
                         //PreparedStatement ps1=conn.prepareStatement("create table ? (id int PRIMARY KEY AUTO_INCREMENT,name varchar(40),gender varchar(10),email varchar(50) UNIQUE,seat_no varchar(30),class varchar(50))");
                         //ps.setString(1,teacher_code.getText()); 
@@ -233,7 +234,7 @@ public class Teacher_Sign_Up_Form extends javax.swing.JFrame {
                         if(i==0)
                         {
                             setVisible(false);
-                            //new Login_form().setVisible(true);    //directing to the Login_form
+                            new Teacher_Login_Form().setVisible(true);    //directing to the Login_form
                         }
                         else
                         {

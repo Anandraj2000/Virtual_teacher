@@ -71,7 +71,7 @@ public class Main_page extends javax.swing.JFrame {
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
-        jTextArea1.setText("FOR TEACHER:\n1. Teacher have to create an account first using email and set username & password.\n2. During sign-up process teacher need to set teacher-code which is unique for \n   each one so teacher must share this teacher-code to student to conduct viva.\n\nFOR STUDENT:\n1. Using teacher-code shared by respected teacher student need to fill one form\n   having name ,class, seat_no, and email.\n2. Only one response is possible through one email and email is also verify by\n   sending OTP to that email.\n\nFOR PERSONAL:\n1. User need only text file of question & answer but only MCQ's formate with answers\n   in the last pages.\n2. user having 2 modes first is reader(read question & answer) and second is viva.");
+        jTextArea1.setText("FOR TEACHER:\n1. Teacher have to create an account first using email and set username & password.\n2. During sign-up process teacher need to set teacher-code which is unique for \n   each so teacher must share this teacher-code to student to conduct viva.\n\nFOR STUDENT:\n1. Using teacher-code shared by respected teacher student need to fill one form\n   having name ,class, seat_no, and email.\n2. Only one response is possible through one email and email is also verify by\n   sending OTP to that email.\n\nFOR PERSONAL:\n1. User need only text file of question & answer but only MCQ's formate with answers\n   in the last pages.\n2. user having 2 modes first is reading mode(read question & answer) and second is \n   viva mode.");
         jScrollPane1.setViewportView(jTextArea1);
 
         jButton1.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
